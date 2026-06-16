@@ -205,28 +205,33 @@ em{font-style:italic;}
    ============================================================ */
 .tocbar{
   position:sticky;top:0;z-index:30;
-  background:linear-gradient(to bottom, var(--accent-wash) 0%, var(--accent-wash) 100%);
+  max-width:1180px;margin:0 auto;
+  background:var(--accent-wash);
   backdrop-filter:blur(8px);
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  box-shadow:0 1px 0 var(--rule-soft);
+  border:1px solid var(--rule);border-top:0;
+  box-shadow:0 8px 22px -12px rgba(0,0,0,.28);
+  overflow:hidden;
 }
 .tocbar::before{
   content:"";display:block;height:2px;background:var(--grad);
 }
-}
 .tocbar-inner{
-  max-width:1180px;margin:0 auto;padding:0 40px;
-  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
+  margin:0 auto;padding:0 28px;
+  display:flex;flex-wrap:nowrap;gap:2px;
+  overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(90deg,#000,#000 calc(100% - 26px),transparent);
+          mask-image:linear-gradient(90deg,#000,#000 calc(100% - 26px),transparent);
 }
 .tocbar-inner::-webkit-scrollbar{display:none;}
 .tocbar a{
   font-family:var(--mono);font-size:11px;letter-spacing:0.08em;
   text-transform:uppercase;color:var(--ink-faint);text-decoration:none;
-  padding:13px 14px;white-space:nowrap;border-bottom:2px solid transparent;
-  transition:color .15s,border-color .15s;
+  padding:13px 13px;white-space:nowrap;flex:0 0 auto;
+  box-shadow:inset 0 -2px 0 transparent;
+  transition:color .15s,box-shadow .15s,background .15s;
 }
-.tocbar a:hover{color:var(--teal);}
-.tocbar a.on{color:var(--navy);border-bottom-color:var(--navy);}
+.tocbar a:hover{color:var(--teal);background:rgba(0,0,0,.035);}
+.tocbar a.on{color:var(--navy);box-shadow:inset 0 -2px 0 var(--navy);}
 
 /* ============================================================
    SEKCJE
@@ -486,7 +491,7 @@ details.dsec summary .scount{margin-left:auto;color:var(--ink-faint);font-weight
 }
 .arglist li .src{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);}
 
-/* steelman: zarzut + riposta */
+/* zarzut + riposta */
 .steel{margin:14px 0;border:1px solid var(--rule);background:var(--paper);}
 .steel .zarzut,.steel .riposta{padding:14px 18px;}
 .steel .zarzut{border-bottom:1px solid var(--rule);}
@@ -803,7 +808,7 @@ html[data-density="compact"] body{font-size:16.5px;line-height:1.55;}
    INSAI · GRADIENT LEVEL (cascading: medium ⊂ strong ⊂ max)
    ============================================================ */
 
-/* —— MEDIUM and above —— */
+/* -- MEDIUM and above -- */
 html[data-grad-level="medium"] .section-head h2,
 html[data-grad-level="strong"] .section-head h2,
 html[data-grad-level="max"] .section-head h2,
@@ -839,7 +844,7 @@ html[data-grad-level="max"] .matryca::before{
   width:3px;
 }
 
-/* —— STRONG and above —— */
+/* -- STRONG and above -- */
 html[data-grad-level="strong"] .arglist li::before,
 html[data-grad-level="max"] .arglist li::before{
   background:var(--grad);
@@ -871,7 +876,7 @@ html[data-grad-level="max"] .pstep .pn{
   -webkit-text-fill-color:transparent;
 }
 
-/* —— MAX —— */
+/* -- MAX -- */
 html[data-grad-level="max"] .hero{
   background-image:radial-gradient(ellipse 800px 400px at top right, var(--accent-wash) 0%, transparent 65%);
 }
@@ -1074,12 +1079,12 @@ html[data-grad-level="max"] .tally .big{
 <section class="section" id="metoda">
   <div class="section-head">
     <span class="section-num">02</span>
-    <div><h2>Jak powstały te propozycje</h2><div class="sub">Pięć etapów pracy &middot; niezależna recenzja &middot; weryfikacja źródeł pierwotnych</div></div>
+    <div><h2>Jak powstały te propozycje</h2><div class="sub">Pięć etapów pracy &middot; weryfikacja źródeł pierwotnych &middot; jawna deklaracja narzędzi</div></div>
   </div>
   <div class="prose">
-    <p class="lede">Propozycje powstały w&nbsp;<strong>autorskiej metodzie badawczej</strong> łączącej analizę głosów i&nbsp;stanowisk wybrzmiałych podczas konsultacji studenckich URK i&nbsp;seminarium Polskiego Towarzystwa Nauk Politycznych (20&nbsp;maja 2026&nbsp;r., Wydział Nauk Politycznych i&nbsp;Studiów Międzynarodowych UW). Materiał dowodowy (precedensy uczelni polskich i&nbsp;zagranicznych, normy prawa powszechnego) jest weryfikowany ze&nbsp;źródłami pierwotnymi. Brzmienia propozycji powstają w&nbsp;wieloetapowej recenzji (rozbieżność opinii &rarr; anonimowa wzajemna ocena &rarr; synteza końcowa), są osadzone w&nbsp;<strong>ośmiu autorskich ramach redakcyjnych</strong> opracowanych na&nbsp;potrzeby tej platformy i&nbsp;przechodzą dwustopniowy test selekcji i&nbsp;wystarczalności.</p>
-    <h3 style="font-size:1.18rem;margin:1.8em 0 0.6em;">Dwa testy, które przechodzi każda propozycja</h3>
-    <p class="wide">Każda jednostka redakcyjna musi przejść <strong>test selekcji</strong> (czy bez tej zmiany pozostaje realne ryzyko? &ndash; jeśli nie, zmiana wypada) oraz <strong>test wystarczalności</strong> (czy proponowane brzmienie faktycznie usuwa ryzyko, czy tylko je sygnalizuje?). Pierwszy wyznacza górny pułap zmiany &ndash; jak najmniej. Drugi wyznacza dolny próg &ndash; na&nbsp;tyle, by zadanie wykonać. Gdy minimalna zmiana nie wystarcza, próg substancji wygrywa: propozycja jest większa, lecz nie większa niż konieczna.</p>
+    <p class="lede">Propozycje powstały w&nbsp;<strong>autorskiej metodzie badawczej</strong> łączącej analizę głosów i&nbsp;stanowisk wybrzmiałych podczas konsultacji studenckich URK i&nbsp;seminarium Polskiego Towarzystwa Nauk Politycznych (20&nbsp;maja 2026&nbsp;r., Wydział Nauk Politycznych i&nbsp;Studiów Międzynarodowych UW). Materiał dowodowy (precedensy uczelni polskich i&nbsp;zagranicznych, normy prawa powszechnego) jest weryfikowany ze&nbsp;źródłami pierwotnymi. Brzmienia propozycji są wielokrotnie przeglądane z&nbsp;kilku niezależnych perspektyw i&nbsp;dopracowywane według spójnego zestawu zasad redakcyjnych, a&nbsp;następnie poddawane sprawdzeniu, czy zmiana jest zarazem konieczna i&nbsp;wystarczająca.</p>
+    <h3 style="font-size:1.18rem;margin:1.8em 0 0.6em;">Dwa kryteria, którym podlega każda propozycja</h3>
+    <p class="wide">Każda jednostka redakcyjna podlega dwóm pytaniom kontrolnym: o&nbsp;<strong>konieczność</strong> (czy bez tej zmiany pozostaje realne ryzyko? jeśli nie, zmiana wypada) oraz o&nbsp;<strong>wystarczalność</strong> (czy proponowane brzmienie faktycznie usuwa ryzyko, czy tylko je sygnalizuje?). Pierwsze pytanie wyznacza górny pułap zmiany &ndash; jak najmniej. Drugie wyznacza dolny próg &ndash; na&nbsp;tyle, by zadanie wykonać. Gdy minimalna zmiana nie wystarcza, próg substancji wygrywa: propozycja jest większa, lecz nie większa niż konieczna.</p>
     <div class="note-inline">
       Sześć z&nbsp;szesnastu jednostek redakcyjnych (pięć propozycji i&nbsp;jeden wątek analityczny) jest oznaczonych jako <strong>wymagające mocniejszego brzmienia</strong>: dla nich minimalna redakcja nie wystarcza (rozbudowana redakcja, wiążące odesłanie lub przywrócenie normy). Oznaczenie jest jawne przy każdej takiej jednostce.
     </div>
@@ -1099,13 +1104,13 @@ html[data-grad-level="max"] .tally .big{
           </div>
           <div class="pstep">
             <span class="pn">Etap 3</span>
-            <h4>Recenzja z&nbsp;pięciu perspektyw</h4>
-            <p>Każda propozycja przechodzi recenzję z&nbsp;pięciu niezależnych perspektyw. Recenzje są początkowo anonimowe, aby uniknąć efektu potakiwania, a&nbsp;następnie syntezowane: zachowuję argumenty najmocniejsze, odrzucam słabsze.</p>
+            <h4>Niezależna recenzja</h4>
+            <p>Każda propozycja przechodzi recenzję z&nbsp;kilku niezależnych perspektyw. Recenzje są początkowo anonimowe, aby ograniczyć wzajemny wpływ ocen, a&nbsp;następnie syntezowane: zachowuję argumenty najmocniejsze, odrzucam słabsze.</p>
           </div>
           <div class="pstep">
             <span class="pn">Etap 4</span>
-            <h4>Osiem reguł redakcyjnych</h4>
-            <p>Wszystkie propozycje powstają w&nbsp;ramach ośmiu wiążących reguł autora platformy. Mają one ustaloną hierarchię, która rozstrzyga, co&nbsp;zrobić w&nbsp;razie konfliktu między zasadami: wierność źródłom wygrywa z&nbsp;minimalizmem zmiany, a&nbsp;uznanie zalet projektu wyprzedza dążenie do&nbsp;jak najmocniejszego brzmienia.</p>
+            <h4>Zasady redakcyjne i&nbsp;ich hierarchia</h4>
+            <p>Wszystkie propozycje powstają w&nbsp;ramach jawnych zasad redakcyjnych o&nbsp;ustalonej hierarchii, która rozstrzyga, co&nbsp;zrobić w&nbsp;razie konfliktu: wierność źródłom wygrywa z&nbsp;minimalizmem zmiany, a&nbsp;uznanie zalet projektu wyprzedza dążenie do&nbsp;jak najmocniejszego brzmienia.</p>
           </div>
           <div class="pstep">
             <span class="pn">Etap 5</span>
@@ -1130,7 +1135,7 @@ html[data-grad-level="max"] .tally .big{
         <p>Propozycje są spójne z&nbsp;dominującymi paradygmatami współczesnej kognitywistyki i&nbsp;badań nad uczeniem maszynowym, choć nie wprowadzają tych ram do&nbsp;brzmień normatywnych aktu prawa wewnętrznego.</p>
         <p>Argumenty o&nbsp;stochastycznej naturze modeli językowych (Propozycja 7 &ndash; definicja bez stopniowania ryzyka, Propozycja 12 &ndash; katalog zagrożeń) wynikają z&nbsp;opisu temperatury i&nbsp;funkcji softmax w&nbsp;paradygmacie przewidywania kolejnego znaku oraz z&nbsp;badań nad wewnętrznymi mechanizmami modelu (Anthropic, „Emotion Concepts and their Function in a&nbsp;Large Language Model", Transformer Circuits, 2 kwietnia 2026 &ndash; funkcjonalne wektory emocji wpływające przyczynowo na&nbsp;zachowanie modelu).</p>
         <p>Argumenty o&nbsp;ryzyku wzmacniania przekonań w&nbsp;interakcji z&nbsp;modelem (Propozycja 12, pkt 3) są spójne z&nbsp;paradygmatem przetwarzania predykcyjnego (Karl Friston, zasada minimalizacji wolnej energii) &ndash; mózg jako maszyna predykcyjna synchronizuje się z&nbsp;innym systemem przewidującym tokeny, co&nbsp;strukturalnie wzmacnia efekt potwierdzenia.</p>
-        <p style="font-size:0.92em;color:var(--ink-soft);">Pełniejsze omówienie założeń teoretycznych (mit Homo Faber jako rama filozoficzna, badania Li et al. 2023 nad reprezentacjami wewnętrznymi modeli językowych typu Othello-GPT, empiria Liang i&nbsp;in. 2023 nad systematycznym błędem detektorów AI wobec piszących nie-natywnie po&nbsp;angielsku) dostępne w&nbsp;osobnym dokumencie towarzyszącym na&nbsp;żądanie.</p>
+        <p style="font-size:0.92em;color:var(--ink-soft);">Wśród przesłanek znajduje się też udokumentowany systematyczny błąd automatycznych detektorów tekstu AI wobec osób piszących po&nbsp;angielsku nie-natywnie, istotny dla propozycji ograniczających poleganie na&nbsp;takich narzędziach.</p>
       </div>
     </details>
   </div>
@@ -1166,7 +1171,7 @@ html[data-grad-level="max"] .tally .big{
       </dl>
     </div>
   </div>
-  <!-- ========== S-12 ========== -->
+  <!-- Propozycja 1 -->
   <article class="unit tura1" id="s12">
     <div class="unit-head">
       <div class="unit-tags">
@@ -1193,10 +1198,7 @@ html[data-grad-level="max"] .tally .big{
               <div class="lawtext">„(...) lub występują w&nbsp;niej naruszenia określone w&nbsp;<span class="ins">ust. 5</span>, stosuje się standardy i&nbsp;procedury postępowania (...)."</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Po zmianie naruszenie z&nbsp;ust. 5 pkt 3 (uprzedzenia płeć/rasa) oraz pkt 4 (język naruszający równość) uruchamia tę samą ścieżkę proceduralną co&nbsp;pkt 1, 2, 5. Żaden organ dyscyplinarny nie może odmówić wszczęcia z&nbsp;powodu „pkt 3/4 nie wymienione". Powrót do&nbsp;pełnego zakresu „ust. 5" – bez kategorii pośredniej i&nbsp;bez nadmiaru.</p>
-          </div>
+          <div class="verdict"><span class="vmark">Skutek zmiany</span><p>Po zmianie naruszenie z ust. 5 pkt 3 (uprzedzenia płeć/rasa) oraz pkt 4 (język naruszający równość) uruchamia tę samą ścieżkę proceduralną co pkt 1, 2, 5. Żaden organ dyscyplinarny nie może odmówić wszczęcia z powodu „pkt 3/4 nie wymienione”. To powrót do pełnego zakresu „ust. 5”, bez kategorii pośredniej i bez nadmiaru.</p></div>
         </div>
         <aside class="matryca">
           <span class="label">Matryca – mniej kosztu = lepiej</span>
@@ -1214,20 +1216,16 @@ html[data-grad-level="max"] .tally .big{
               <li>Różnicowanie sankcyjne wewnątrz jednego, równorzędnego katalogu wymaga uzasadnienia opartego na&nbsp;racjonalnym kryterium – uzasadnienia brak. Wyłączenie pkt 3-4 odwraca kierunek ochrony: norma chroni naruszyciela kosztem osoby z&nbsp;grupy chronionej. <span class="src">[art. 32 i&nbsp;33 Konstytucji RP]</span></li>
               <li>Zespół URK podczas konsultacji studenckich publicznie przyjął tę uwagę, przyznając, że&nbsp;pominięcie dwóch punktów dotyczących wymogów etycznych mogło dawać niewłaściwe sygnały interpretacyjne. To ratyfikacja, nie nowy postulat. <span class="src">konsultacje studenckie URK, 21 maja 2026 r.</span></li>
               <li>To regres względem własnego, wcześniejszego aktu URK – uchwała 98/2023 odsyłała do&nbsp;pełnego zakresu katalogu odpowiedzialności. <span class="src">[uchwała nr 98/2023 URK]</span></li>
-              <li>Pięć punktów ust. 5 to jeden ustęp i&nbsp;jedna ranga normatywna. Mechanizm sankcyjny obejmujący tylko trzy z&nbsp;nich łamie tę równorzędność wewnątrz samego aktu. <span class="src">[spójność wewnętrzna projektu]</span></li>
+              <li>Pięć punktów ust. 5 to jeden ustęp i&nbsp;jedna ranga normatywna. Mechanizm sankcyjny obejmujący tylko trzy z&nbsp;nich łamie tę równorzędność wewnątrz samego aktu.</li>
             </ul>
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">3 zastrzeżenia</span></summary>
+          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">2 zastrzeżenia</span></summary>
           <div class="dsec-body">
             <div class="steel">
               <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Objęcie pkt 3-4 procedurą dyscyplinarną grozi karaniem studenta za&nbsp;nieświadome powielenie uprzedzenia, które wygenerował model AI – to nadmierna represja wobec osoby bez winy.</p></div>
               <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja nie tworzy nowego typu naruszenia ani nie przesądza o&nbsp;winie – przywraca jedynie, że&nbsp;stwierdzone naruszenie pkt 3-4 wszczyna tę samą procedurę co&nbsp;pozostałe. Procedura dyscyplinarna (uchwała 14/2020) ma własne mechanizmy oceny zawinienia i&nbsp;proporcjonalności kary. Kalibrowanie winy wewnątrz uchwały URK przekraczałoby próg minimalnej zmiany – to domena procedury, nie katalogu.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Podczas konsultacji padło stanowisko, że&nbsp;zespół nie zamierza usuwać pkt 3 i&nbsp;4 z&nbsp;katalogu naruszeń. Skoro tak, propozycja idzie wbrew stanowisku zespołu.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja niczego nie wykreśla – przeciwnie. Punkty 3 i&nbsp;4 pozostają w&nbsp;ust. 5 nietknięte; zmienia się wyłącznie ust. 6, tak by odsyłał do&nbsp;całego ust. 5. To dokładna odwrotność wykreślenia: domknięcie zakresu odesłania, nie jego uszczuplenie. Red line zespołu („nie wyrzucamy pkt 3-4") jest w&nbsp;pełni honorowany – brzmienie PO celowo nie dotyka ust. 5.</p></div>
             </div>
             <div class="steel">
               <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Punkty 3 i&nbsp;4 nie są tak naprawdę wyłączone z&nbsp;ochrony – są pochłaniane przez punkt 5 (dobre obyczaje). Recenzent stwierdzający rasistowski tekst zakwalifikuje go jako naruszenie dobrych obyczajów i&nbsp;procedura ruszy via pkt 5. Luka jest pozorna.</p></div>
@@ -1236,10 +1234,7 @@ html[data-grad-level="max"] .tally .big{
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Dlaczego to najmniejsza możliwa zmiana <span class="scount">kompromis</span></summary>
-          <div class="dsec-body">
-            <p>To dosłownie zmiana jednego odesłania: „pkt 1, 2 lub 5" zastąpione przez „ust. 5". Najmniejsza możliwa jednostka redakcyjna – nie dodaje ustępów, nie definiuje pojęć, nie angażuje nowych organów. Przywraca konstrukcję, którą uchwała 98/2023 już miała, więc nie jest nowością ustrojową. Dla zespołu URK to ratyfikacja własnej, publicznie wyrażonej zgody – stąd koszt polityczny znikomy i&nbsp;pozycja jednostki otwierającej pierwszą turę. Świadomie <strong>nie</strong> dodano podpunktów kalibrujących winę ani nie wprowadzono Pełnomocnika ds. Równego Traktowania – to przekraczałoby próg minimalnej zmiany.</p>
-          </div>
+          <summary><span class="chev">+</span> Zakres zmiany <span class="scount">wąski</span></summary><div class="dsec-body"><p>To dosłownie zmiana jednego odesłania: „pkt 1, 2 lub 5” zastąpione przez „ust. 5”. Najwęższa jednostka redakcyjna – nie dodaje ustępów, nie definiuje pojęć, nie angażuje nowych organów. Przywraca konstrukcję, którą uchwała 98/2023 już miała, więc nie jest nowością ustrojową. Dla zespołu URK to ratyfikacja własnej, publicznie wyrażonej zgody, stąd koszt polityczny znikomy. Celowo nie dodano podpunktów kalibrujących winę ani nie wprowadzono Pełnomocnika ds. Równego Traktowania – to przekraczałoby zakres tej propozycji.</p></div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Źródła i&nbsp;wzorce <span class="scount">3 źródła</span></summary>
@@ -1267,7 +1262,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-03 ========== -->
+  <!-- Propozycja 2 -->
   <article class="unit tura1" id="s03">
     <div class="unit-head">
       <div class="unit-tags">
@@ -1294,10 +1289,7 @@ html[data-grad-level="max"] .tally .big{
               <div class="lawtext">„(...) dostęp do&nbsp;aplikacji (...): 1) językowych (duże modele językowe, posiadające dodatkowo coraz bardziej rozbudowane możliwości współtworzenia oprogramowania oraz funkcje agentowe); 2) dyfuzyjnych (dotyczących m.in. syntezy obrazu)."</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Po zmianie żadna rada dydaktyczna ani prowadzący nie zacytuje § 2 ust. 4 jako „katalogu dopuszczonych narzędzi UW" – akt opisuje wyłącznie kategorie funkcjonalne i&nbsp;nie wyróżnia podmiotu rynkowego. Ryzyko sygnalizacyjne („to są narzędzia UW") oraz ryzyko zarzutu nierównego traktowania dostawców zostaje zneutralizowane w&nbsp;momencie usunięcia nazw.</p>
-          </div>
+          <div class="verdict"><span class="vmark">Skutek zmiany</span><p>Po zmianie żadna rada dydaktyczna ani prowadzący nie zacytuje § 2 ust. 4 jako „katalogu dopuszczonych narzędzi UW” – akt opisuje wyłącznie kategorie funkcjonalne i nie wyróżnia podmiotu rynkowego. Ryzyko sygnalizacyjne („to są narzędzia UW”) oraz ryzyko zarzutu nierównego traktowania dostawców zostaje zneutralizowane w momencie usunięcia nazw.</p></div>
         </div>
         <aside class="matryca">
           <span class="label">Matryca – mniej kosztu = lepiej</span>
@@ -1337,10 +1329,7 @@ html[data-grad-level="max"] .tally .big{
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Dlaczego to najmniejsza możliwa zmiana <span class="scount">kompromis</span></summary>
-          <div class="dsec-body">
-            <p>Propozycja skreśla dwie frazy – nic nie dodaje. Kategorie funkcjonalne („językowych", „dyfuzyjnych") wraz z&nbsp;opisami pozostają dokładnie takie, jak w&nbsp;projekcie. To zmiana o&nbsp;najwęższym możliwym zakresie, a&nbsp;zarazem taka, do&nbsp;której zespół URK sam jawnie zmierzał na&nbsp;konsultacjach. Szerszy postulat – pozytywne zobowiązanie do&nbsp;równego dostępu z&nbsp;art. 70 ust. 4 – celowo <strong>nie</strong> wchodzi do&nbsp;tej jednostki; to osobny wątek poza zakresem publicznej zgody zespołu, dlatego znacznik wymogu mocniejszego brzmienia jest „warunkowy": propozycja jest bezpieczna, dopóki pozostaje wąsko ograniczona do&nbsp;usunięcia nazw.</p>
-          </div>
+          <summary><span class="chev">+</span> Zakres zmiany <span class="scount">wąski</span></summary><div class="dsec-body"><p>Propozycja skreśla dwie frazy – nic nie dodaje. Kategorie funkcjonalne („językowych”, „dyfuzyjnych”) wraz z opisami pozostają dokładnie takie, jak w projekcie. To zmiana o wąskim zakresie, do której zespół URK sam jawnie zmierzał na konsultacjach. Szerszy postulat – pozytywne zobowiązanie do równego dostępu z art. 70 ust. 4 – celowo nie wchodzi do tej jednostki; to osobny wątek, dlatego znacznik wymogu mocniejszego brzmienia jest „warunkowy”: propozycja jest bezpieczna, dopóki pozostaje wąsko ograniczona do usunięcia nazw.</p></div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Źródła i&nbsp;wzorce <span class="scount">4 źródła</span></summary>
@@ -1375,8 +1364,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-11 ========== -->
-  <article class="unit tura1" id="s11">
+  <article class="unit" id="s11">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 3</span><span class="unit-para">§ 6 ust. 9</span>
@@ -1397,15 +1385,15 @@ html[data-grad-level="max"] .tally .big{
               <span class="pp-tag">Przed – projekt nowelizacji</span>
               <div class="lawtext">„Nie jest dopuszczalne użycie narzędzi komputerowych wykrywających stosowanie systemów SI jako <span class="del">jedynej metody potwierdzającej</span> nieuprawnione stosowanie przez osoby studiujące narzędzi wykorzystujących systemy SI podczas przygotowywania prac zaliczeniowych."</div>
             </div>
-            <div class="pp-arrow">↓ Redakcja B – wymagana (Redakcja A&nbsp;odrzucona jako niewystarczająca)</div>
+            <div class="pp-arrow">↓ wymagane mocniejsze brzmienie (minimalna redakcja uznana za&nbsp;niewystarczającą)</div>
             <div class="pp-block pp-po">
               <span class="pp-tag">Po – propozycja</span>
               <div class="lawtext">„Nie jest dopuszczalne użycie wyniku narzędzi komputerowych wykrywających stosowanie systemów SI jako <span class="ins">samodzielnej podstawy wszczęcia postępowania</span> w&nbsp;sprawie nieuprawnionego stosowania (...) <span class="ins">ani jako wyłącznego dowodu w&nbsp;takim postępowaniu. Wszczęcie postępowania wymaga dodatkowo ustalenia o&nbsp;charakterze merytorycznym, w&nbsp;szczególności weryfikacji wiedzy osoby studiującej lub procesu przygotowania pracy; czynność o&nbsp;charakterze wyłącznie formalnym nie spełnia tego wymogu. Sposoby weryfikacji merytorycznej mogą zostać doprecyzowane przez właściwą radę dydaktyczną.</span>"</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Po wejściu PO prowadzący nie może zalegalizować postępowania kombinacją „detektor plus rozmowa pro forma" – drugi element musi być merytoryczny, a&nbsp;czynność wyłącznie formalna jest wprost wyłączona. Sama zamiana „jedyna metoda" na&nbsp;„wyłączny dowód" (Redakcja A) byłaby niewystarczająca: luka wykonawcza przetrwałaby. Propozycja świadomie idzie dalej.</p>
+          <div class="verdict">
+            <span class="vmark">Dlaczego mocniejsze brzmienie jest konieczne</span>
+            <p>Po wejściu proponowanego zapisu prowadzący nie może zalegalizować postępowania kombinacją „detektor plus rozmowa pro forma", ponieważ drugi element musi być merytoryczny, a&nbsp;czynność o&nbsp;charakterze wyłącznie formalnym jest wprost wyłączona. Sama zamiana zwrotu „jedyna metoda" na&nbsp;„wyłączny dowód" nie domykałaby luki wykonawczej, dlatego propozycja idzie o&nbsp;krok dalej.</p>
           </div>
         </div>
         <aside class="matryca">
@@ -1413,7 +1401,7 @@ html[data-grad-level="max"] .tally .big{
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">kierunkowa</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">bardzo wysoki</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i></div></div>
           <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">niski-średni</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
-          <div class="metric"><div class="mname"><span>Wymóg mocniejszego brzmienia</span></div><span class="mflag yes">tak – Redakcja A&nbsp;nie wystarcza</span></div>
+          <div class="metric"><div class="mname"><span>Wymóg mocniejszego brzmienia</span></div><span class="mflag yes">tak – minimalna redakcja nie wystarcza</span></div>
         </aside>
       </div>
       <div class="expand">
@@ -1421,7 +1409,7 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">5 argumentów</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>Kierunek § 6 ust. 9 jest dobry, problem leży w&nbsp;nieostrości wykonawczej: „jedyna metoda" jest niezdefiniowana. Detektor plus rozmowa pro forma formalnie spełnia klauzulę, materialnie rozstrzygnięcie nadal opiera się na&nbsp;zawodnym narzędziu. To luka wykonawcza, nie wada normy. <span class="src">[charakter praworządnościowy]</span></li>
+              <li>Kierunek § 6 ust. 9 jest dobry, problem leży w&nbsp;nieostrości wykonawczej: „jedyna metoda" jest niezdefiniowana. Detektor plus rozmowa pro forma formalnie spełnia klauzulę, materialnie rozstrzygnięcie nadal opiera się na&nbsp;zawodnym narzędziu. To luka wykonawcza, nie wada normy.</li>
               <li>Rozstrzygnięcie o&nbsp;nieuprawnionym użyciu SI oparte na&nbsp;niewiarygodnym detektorze przerzuca na&nbsp;studenta ciężar dowodu niewinności. <span class="src">[tło: art. 42 ust. 3 Konstytucji RP; RODO art. 22]</span></li>
               <li>Academic Integrity Working Group Uniwersytetu Stanforda uznaje narzędzia detekcji AI za&nbsp;nieodpowiednie jako dowód w&nbsp;sprawach o&nbsp;naruszenie integralności akademickiej. UC Berkeley instytucjonalnie nie rekomenduje detekcji i&nbsp;nie zawiera umów z&nbsp;dostawcami detektorów. <span class="src">[Stanford AIWG 2025; UC Berkeley Academic Senate 2025]</span></li>
               <li>OpenAI wycofało własne narzędzie „AI Text Classifier" (20.07.2023) z&nbsp;powodu niskiej dokładności. Liang et al. 2023 wykazali średni odsetek fałszywie pozytywnych 61,3% dla siedmiu detektorów na&nbsp;esejach osób piszących w&nbsp;języku innym niż ojczysty – bias systemowy, który aktywuje art. 32 KRP. <span class="src">[Liang et al. 2023, Patterns; addendum OpenAI]</span></li>
@@ -1430,20 +1418,9 @@ html[data-grad-level="max"] .tally .big{
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">3 zastrzeżenia</span></summary>
+          <summary><span class="chev">+</span> Możliwe wątpliwości i&nbsp;wyjaśnienia</summary>
           <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie – najostrzejsze</span><p>Sama zamiana „jedyna metoda" na&nbsp;„wyłączny dowód" nie zamyka luki. Prowadzący nadal odhaczy „drugi dowód" rozmową pro forma, bo&nbsp;nic nie wymaga, by drugi element był merytoryczny. Jeśli propozycja zatrzyma się na&nbsp;minimalnej redakcji, jest substancjalnie pusta.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne, przyjęte jako warunek</span><p>To dokładnie powód, dla którego propozycja jest Redakcją B, nie A. Redakcja B dodaje element decydujący: drugie ustalenie musi mieć charakter merytoryczny (weryfikacja wiedzy lub procesu pracy), a&nbsp;zdanie „czynność o&nbsp;charakterze wyłącznie formalnym nie spełnia tego wymogu" zamyka furtkę pozorności wprost. Jednostka jest oznaczona jako wymagająca mocniejszego brzmienia właśnie po&nbsp;to, by minimalna redakcja nie została uznana za&nbsp;wystarczającą.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Zapis sugeruje, że&nbsp;prowadzący działają w&nbsp;złej wierze – obchodzą przepis rozmową pro forma. To oskarżenie kadry. Po&nbsp;co&nbsp;atakować jeden z&nbsp;mocnych zapisów projektu?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja nie zakłada złej wiary kadry. Mechanizm jest neutralny: niedookreślona norma daje przestrzeń interpretacyjną, którą część prowadzących wypełni rzetelnie, część formalnie, część rezygnacją z&nbsp;weryfikacji. Doprecyzowanie chroni rzetelnych prowadzących przed zarzutem i&nbsp;daje jasny standard niedoświadczonym. Sam zespół URK na&nbsp;konsultacjach sygnalizował potrzebę doprecyzowania tego punktu – propozycja realizuje tę linię. Framing: doprecyzowanie dobrego zapisu, nie „zapis jest dziurawy".</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Skoro już rozbudowujemy przepis – czemu nie pełna lista zatwierdzonych narzędzi detekcji i&nbsp;katalog praw procesowych studenta? A&nbsp;jeśli nie, to po&nbsp;co&nbsp;go w&nbsp;ogóle ruszać?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Lista zatwierdzonych narzędzi i&nbsp;katalog praw procesowych (rozbudowana Redakcja C) przekraczają próg wystarczalności i&nbsp;byłyby nadmiarem. Redakcja B jest świadomie powściągliwa: dwa zdania (element merytoryczny plus delegacja do&nbsp;rady), bez rozbudowy. Model hybrydowy – twardy zapis plus doprecyzowanie przez radę dydaktyczną – padł zresztą podczas konsultacji jako kierunek właściwy dla tego punktu. Propozycja jest większa niż minimum, lecz nie większa niż konieczna.</p></div>
-            </div>
+            <p>Proponowane brzmienie celowo wykracza poza prostą zamianę sformułowania „jedyna metoda" na&nbsp;„wyłączny dowód". Dodaje element rozstrzygający: drugie ustalenie musi mieć charakter merytoryczny (weryfikacja wiedzy lub procesu powstawania pracy), a&nbsp;zdanie „czynność o&nbsp;charakterze wyłącznie formalnym nie spełnia tego wymogu" wprost wyklucza pozorność. Bez tego dodatku luka wykonawcza mogłaby przetrwać.</p>
           </div>
         </details>
         <details class="dsec">
@@ -1494,8 +1471,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-15 ========== -->
-  <article class="unit tura1" id="s15">
+  <article class="unit" id="s15">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 4</span><span class="unit-para">jednostka przekrojowa – nowy ust. w&nbsp;§ 8</span>
@@ -1516,15 +1492,15 @@ html[data-grad-level="max"] .tally .big{
               <span class="pp-tag">Przed – projekt nowelizacji</span>
               <div class="lawtext">Projekt nie zawiera ekwiwalentu klauzuli kompetencji AI. AI literacy pojawia się wyłącznie jako abstrakcyjne „zagrożenie" (§ 4 ust. 2 pkt 1). Obowiązująca wcześniej uchwała 98/2023 § 5 ust. 1: „Rekomenduje się, aby na&nbsp;Uniwersytecie Warszawskim były prowadzone regularne szkolenia dotyczące wykorzystania systemów SI w&nbsp;procesie kształcenia akademickiego."</div>
             </div>
-            <div class="pp-arrow">↓ wiążące odesłanie kompetencyjne – nowy ust. 5 w&nbsp;§ 8 (odesłanie miękkie odrzucone jako niewystarczające)</div>
+            <div class="pp-arrow">↓ wiążące odesłanie kompetencyjne – nowy ust. 5 w&nbsp;§ 8 (odesłanie miękkie byłoby niewystarczające)</div>
             <div class="pp-block pp-po">
               <span class="pp-tag">Po – propozycja</span>
               <div class="lawtext">„<span class="ins">Zapewnienie kadrze dydaktycznej oraz kadrze administracyjnej Uniwersytetu Warszawskiego odpowiedniego poziomu kompetencji w&nbsp;zakresie korzystania z&nbsp;systemów SI (AI literacy) stanowi obowiązek Uniwersytetu Warszawskiego wynikający z&nbsp;art. 4 Rozporządzenia Parlamentu Europejskiego i&nbsp;Rady (UE) 2024/1689 z&nbsp;dnia 13 czerwca 2024 r. w&nbsp;sprawie sztucznej inteligencji. Niezależnie od&nbsp;obowiązku z&nbsp;art. 4 wskazanego rozporządzenia, w&nbsp;odniesieniu do&nbsp;osób studiujących Uniwersytet Warszawski zapewnia analogiczny poziom kompetencji w&nbsp;ramach realizacji procesu kształcenia, uwzględniając zarówno motyw 20 wskazanego rozporządzenia (osoby, na&nbsp;które oddziałują systemy SI), jak i&nbsp;obowiązki dydaktyczne uczelni wynikające z&nbsp;ustawy z&nbsp;dnia 20 lipca 2018 r. – Prawo o&nbsp;szkolnictwie wyższym i&nbsp;nauce. Obowiązek ten jest realizowany w&nbsp;trybie zarządzenia Rektora Uniwersytetu Warszawskiego. URK rekomenduje Rektorowi wydanie tego zarządzenia, określającego grupy docelowe, zakres oraz tryb działań w&nbsp;zakresie AI literacy, bez zbędnej zwłoki, nie później niż w&nbsp;terminie 12 miesięcy od&nbsp;dnia wejścia w&nbsp;życie niniejszej uchwały.</span>"</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Odesłanie nazywa podstawę prawną (art. 4 rozporządzenia 2024/1689), instrument (zarządzenie Rektora), adresata i&nbsp;trzy grupy docelowe oraz horyzont (12 miesięcy) – to sprawdzalny mandat, nie pusta zachęta. Miękkie „rekomenduje się rozważenie szkoleń" byłoby niewystarczające. Substancja operacyjna trafia do&nbsp;zarządzenia rektorskiego – kanał równoległy.</p>
+          <div class="verdict">
+            <span class="vmark">Dlaczego to sprawdzalny mandat, a&nbsp;nie pusta zachęta</span>
+            <p>Odesłanie nazywa podstawę prawną (art. 4 rozporządzenia 2024/1689), instrument (zarządzenie Rektora), adresata oraz trzy grupy docelowe i&nbsp;horyzont (12 miesięcy). Miękkie „rekomenduje się rozważenie szkoleń" byłoby niewystarczające; substancja operacyjna trafia do&nbsp;zarządzenia rektorskiego jako kanału równoległego.</p>
           </div>
         </div>
         <aside class="matryca">
@@ -1532,7 +1508,7 @@ html[data-grad-level="max"] .tally .big{
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">warunkowa co&nbsp;do&nbsp;nośnika</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">wysoki</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">niski</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
-          <div class="metric"><div class="mname"><span>Wymóg mocniejszego brzmienia</span></div><span class="mflag yes">tak – odesłanie miękkie nie wystarcza</span></div>
+          <div class="metric"><div class="mname"><span>Wymóg mocniejszego brzmienia</span></div><span class="mflag yes">tak – wariant miękki nie wystarcza</span></div>
         </aside>
       </div>
       <div class="expand">
@@ -1549,26 +1525,15 @@ html[data-grad-level="max"] .tally .big{
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">3 zastrzeżenia</span></summary>
+          <summary><span class="chev">+</span> Możliwe wątpliwości i&nbsp;wyjaśnienia</summary>
           <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie – najmocniejsze</span><p>AI literacy nie należy do&nbsp;URK. Wydanie zarządzenia szkoleniowego to kompetencja Rektora. Wpisywanie obowiązku szkoleniowego do&nbsp;uchwały URK to wkroczenie w&nbsp;cudzą kompetencję – URK reguluje zasady kształcenia, nie organizuje szkoleń.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne co&nbsp;do&nbsp;instrumentu, dlatego propozycja je honoruje</span><p>Zespół URK nie odrzuca AI literacy merytorycznie – na&nbsp;konsultacjach sygnalizowano, że&nbsp;merytoryczna potrzeba kompetencji AI nie jest sporna; spór dotyczy wyłącznie nośnika prawnego. Propozycja w&nbsp;pełni honoruje argument kompetencyjny: <em>nie</em> wpisuje obowiązku szkoleniowego do&nbsp;URK jako zapisu substancjalnego. Wpisuje wiążące odesłanie – uchwała stwierdza, że&nbsp;obowiązek (który UW i&nbsp;tak ma z&nbsp;prawa UE) realizuje się zarządzeniem Rektora, i&nbsp;rekomenduje Rektorowi jego wydanie. Substancja operacyjna trafia do&nbsp;zarządzenia. Kanał zarządzenia rektorskiego padł zresztą na&nbsp;konsultacjach jako właściwy – odesłanie do&nbsp;tego kanału nie jest sprzeczne ze&nbsp;stanowiskiem zespołu.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Samo miękkie odesłanie – „rekomenduje się rozważenie szkoleń" – jest substancjalnie puste. Lepiej tę jednostkę z&nbsp;formularza usunąć niż udawać, że&nbsp;rozwiązuje problem.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Zastrzeżenie trafne co&nbsp;do&nbsp;miękkiego odesłania – i&nbsp;dlatego propozycja go nie wybiera. Wymóg mocniejszego brzmienia to właściwość brzmienia, nie harmonogramu: właściwą odpowiedzią jest „wejdź z&nbsp;mocniejszym brzmieniem", nie „odłóż jednostkę". Wiążące odesłanie nie jest puste – nazywa podstawę prawną, instrument, adresata, grupy docelowe i&nbsp;horyzont. To sprawdzalny mandat. Zachowany jest wariant zapasowy: gdyby reakcja zespołu wykazała, że&nbsp;wiążące odesłanie jest politycznie nieosiągalne, jednostka schodzi z&nbsp;formularza, a&nbsp;substancja idzie torem parlamentu studenckiego.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wpisanie horyzontu „12 miesięcy" nakłada na&nbsp;Rektora termin – URK nie ma kompetencji, by wiązać Rektora terminem wydania zarządzenia.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – częściowo trafne, adresowane konstrukcją</span><p>Propozycja jest sformułowana jako <em>rekomendacja</em> URK skierowana do&nbsp;Rektora, nie jako norma wiążąco nakazująca. Obowiązek AI literacy istnieje niezależnie od&nbsp;uchwały (z prawa UE), a&nbsp;uchwała jedynie wskazuje właściwy nośnik i&nbsp;rekomenduje horyzont. Fraza „bez zbędnej zwłoki" mirroruje język § 8 ust. 1-4 samego projektu – propozycja używa terminologii, którą projekt już stosuje w&nbsp;przepisach końcowych.</p></div>
-            </div>
+            <p>Horyzont „12 miesięcy" ma charakter rekomendacji URK skierowanej do&nbsp;Rektora, nie normy wiążąco nakazującej. Obowiązek AI literacy istnieje niezależnie od&nbsp;uchwały (z prawa UE), a&nbsp;uchwała jedynie wskazuje właściwy nośnik i&nbsp;rekomenduje horyzont. Fraza „bez zbędnej zwłoki" odpowiada językowi przepisów końcowych samego projektu (§ 8 ust. 1-4).</p>
           </div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis + wariant zapasowy</span></summary>
           <div class="dsec-body">
-            <p>Propozycja dodaje jeden ustęp w&nbsp;przepisach końcowych. <strong>Nie</strong> jest to bezpośredni zapis substancjalny w&nbsp;URK – honoruje argument kompetencyjny autora i&nbsp;ostrożność wobec nośnika prawnego. Substancja operacyjna (budżet, metryka, szczegóły grup docelowych) trafia do&nbsp;zarządzenia rektorskiego. Klasa praworządnościowa – uchybienie operacjonalizacji, nie naruszenie prawa podstawowego; świadomie nie framowane konstytucyjnie. <strong>Wariant zapasowy:</strong> jeśli reakcja zespołu URK wykaże, że&nbsp;wiążące odesłanie jest politycznie nieosiągalne, jednostka schodzi z&nbsp;formularza pierwszej tury, a&nbsp;jej substancja przekierowuje się na&nbsp;zarządzenie rektorskie torem parlamentu studenckiego – rdzeń pierwszej tury redukuje się wtedy do&nbsp;czterech jednostek. To wariant warunkowy, aktywowany tylko realną informacją z&nbsp;reakcji zespołu.</p>
+            <p>Propozycja dodaje jeden ustęp w&nbsp;przepisach końcowych. <strong>Nie</strong> jest to bezpośredni zapis substancjalny w&nbsp;uchwale URK: honoruje argument kompetencyjny autora i&nbsp;ostrożność co&nbsp;do&nbsp;nośnika prawnego. Substancja operacyjna (budżet, metryka, szczegóły grup docelowych) trafia do&nbsp;zarządzenia rektorskiego. <strong>Wariant zapasowy:</strong> jeśli wiążące odesłanie okaże się politycznie nieosiągalne, ta jednostka może zejść z&nbsp;formularza, a&nbsp;jej substancja przekierowuje się na&nbsp;zarządzenie rektorskie torem parlamentu studenckiego. Klasa praworządnościowa dotyczy uchybienia operacjonalizacji, nie naruszenia prawa podstawowego, i&nbsp;świadomie nie jest framowana konstytucyjnie.</p>
           </div>
         </details>
         <details class="dsec">
@@ -1606,8 +1571,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-16 ========== -->
-  <article class="unit tura1" id="s16">
+  <article class="unit" id="s16">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 5</span><span class="unit-para">jednostka przekrojowa – nowy ust. w&nbsp;§ 5</span>
@@ -1635,12 +1599,12 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
+            <span class="vmark">Czy to wystarcza</span>
             <p>Po wejściu PO uczestnik zajęć niechcący transferu swoich danych do&nbsp;zewnętrznego dostawcy ma realne, egzekwowalne uprawnienie: jego pisemna zgoda jest warunkiem użycia narzędzia, a&nbsp;w&nbsp;razie odmowy przysługuje mu alternatywa. To norma, nie świadomość „ryzyka". Samo odesłanie do&nbsp;komunikatu informacyjnego byłoby niewystarczające.</p>
           </div>
         </div>
         <aside class="matryca">
-          <span class="label">Matryca – mniej kosztu = lepiej</span>
+          <span class="label">Charakterystyka propozycji</span>
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">wysoka</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">wysoki</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">niski</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
@@ -1654,38 +1618,16 @@ html[data-grad-level="max"] .tally .big{
             <ul class="arglist">
               <li>Obowiązująca wcześniej uchwała 98/2023 § 5 ust. 5 pkt 4 miała konkretną klauzulę zgody. Projekt ją usuwa, zostawiając abstrakcyjną wzmiankę o&nbsp;„ryzyku" – regres na&nbsp;poziomie aktu prawa wewnętrznego. <span class="src">[uchwała 98/2023 URK]</span></li>
               <li>Ryzyko nie polega na&nbsp;zniknięciu obowiązku RODO – RODO obowiązuje niezależnie od&nbsp;uchwały. Ryzyko to utrata operacyjnego mostu: 98/2023 przekładała ogólny obowiązek na&nbsp;konkretną, wykonalną regułę dydaktyczną; projekt cofa to do&nbsp;poziomu diagnozy. <span class="src">[RODO art. 6 i&nbsp;9; art. 47 i&nbsp;51 ust. 1 Konstytucji RP]</span></li>
-              <li>Bez klauzuli operacyjnej uczestnik, którego dane mają trafić do&nbsp;zewnętrznego dostawcy SI, ma jedynie świadomość „ryzyka" – nie ma egzekwowalnego uprawnienia. Przywracana klauzula daje mu konkretne prawo. <span class="src">[charakter praworządnościowy]</span></li>
+              <li>Bez klauzuli operacyjnej uczestnik, którego dane mają trafić do&nbsp;zewnętrznego dostawcy SI, ma jedynie świadomość „ryzyka" – nie ma egzekwowalnego uprawnienia. Przywracana klauzula daje mu konkretne prawo.</li>
               <li>Politechnika Łódzka (Zarządzenie 31/2025) bezwzględnie zakazuje wprowadzania do&nbsp;narzędzi SI danych chronionych prawem. Politechnika Warszawska wskazuje modele działające w&nbsp;infrastrukturze uczelni bez komunikacji z&nbsp;serwerami zewnętrznymi jako rozwiązanie RODO. <span class="src">[Politechnika Łódzka 31/2025; Politechnika Warszawska 1/L/2024]</span></li>
               <li>Zespół URK podczas konsultacji studenckich przyjął tę uwagę: „przyjmuję tę uwagę, spróbujemy się nad tym zastanowić". Wskazana obawa dotyczy nie obrony usunięcia, lecz unikania dublowania aktów – zespół nie broni samego usunięcia klauzuli. <span class="src">konsultacje studenckie URK, 21 maja 2026 r.</span></li>
             </ul>
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">4 zastrzeżenia</span></summary>
-          <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie – pułapka pozorności</span><p>Nie trzeba przywracać osobnego ustępu – wystarczy odesłać do&nbsp;komunikatu Inspektora Ochrony Danych UW w&nbsp;sprawie narzędzi AI. Komunikat IOD już normuje przetwarzanie danych przez AI, więc nowy ustęp byłby dublowaniem.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – to pułapka, którą propozycja świadomie omija</span><p>Komunikat IOD UW jest aktem informacyjnym, nie normą. „Odsyłam do&nbsp;komunikatu" nie odtwarza obowiązku uzyskania zgody – akt informacyjny opisuje, nie nakazuje. To nie jest dublowanie: komunikat IOD dotyczy ogólnie wyprowadzania treści chronionych do&nbsp;narzędzi AI, a&nbsp;usunięty pkt 4 to konkretny, egzekwowalny wymóg zgody na&nbsp;poszczególnych zajęciach – inny zakres, inna funkcja prawna. Wariant „odesłanie do&nbsp;komunikatu" jest niewystarczający: nazwałby regresję bez jej cofnięcia. Jednostka wchodzi do&nbsp;pierwszej tury wyłącznie z&nbsp;kryterium przywrócenia egzekwowalnego wymogu.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Bałbym się dublować to w&nbsp;innym akcie. RODO obowiązuje samo z&nbsp;siebie – po&nbsp;co&nbsp;powtarzać w&nbsp;uchwale URK obowiązek, który i&nbsp;tak ciąży na&nbsp;UW z&nbsp;mocy prawa unijnego?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Obawa o&nbsp;dublowanie jest uzasadniona jako zasada, ale tu nie zachodzi. Propozycja nie powtarza RODO – operacjonalizuje je do&nbsp;reguły dydaktycznej. RODO mówi „przetwarzanie danych szczególnych wymaga podstawy", ale nie mówi „prowadzący przed użyciem narzędzia na&nbsp;zajęciach musi zebrać pisemną zgodę grupy" – to przełożenie, którego dokonywała 98/2023 i&nbsp;którego projekt nie ma. Bez operacjonalizacji obowiązek RODO jest dla prowadzącego, który nie jest prawnikiem, abstrakcyjny. Propozycja respektuje obawę o&nbsp;dublowanie, przywracając konkretny, brakujący wymóg, a&nbsp;nie powtórzenie.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wymóg zgody wszystkich uczestników blokuje narzędzie dla całej grupy, jeśli jedna osoba odmówi. To paraliżuje dydaktykę.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – trafne wobec prostego przywrócenia, dlatego propozycja dodaje mechanizm</span><p>Samo przywrócenie zdania z&nbsp;98/2023 rzeczywiście rodziłoby ten problem. Dlatego propozycja zawiera zdanie drugie: pojedyncza odmowa nie blokuje narzędzia dla grupy, lecz uruchamia obowiązek zapewnienia alternatywy uczestnikowi odmawiającemu. Narzędzie pozostaje dostępne dla grupy; chroniony jest indywidualny uczestnik. To rozwiązanie wzorowane na&nbsp;praktyce UC Berkeley. Dodatkowo termin „umowy o&nbsp;powierzeniu przetwarzania" doprecyzowuje luźniejsze sformułowanie 98/2023 zgodnie z&nbsp;art. 28 RODO.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie – RODO i&nbsp;nierównowaga sił</span><p>W&nbsp;relacji uczelnia&ndash;student istnieje nierównowaga sił. Zgoda osoby studiującej może nie być „dobrowolna" w&nbsp;rozumieniu art. 4 pkt 11 RODO oraz Wytycznych EROD 05/2020. Opieranie operacjonalizacji RODO na&nbsp;zgodzie w&nbsp;tej relacji jest prawnie ryzykowne; trafniejsze byłoby oparcie przetwarzania na&nbsp;innej podstawie z&nbsp;art. 6 RODO (np. zadanie publiczne).</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zarzut trafny w&nbsp;diagnozie, adresowany konstrukcją mechanizmu alternatywy</span><p>Diagnoza nierównowagi sił jest prawidłowa. Wytyczne EROD 05/2020 wskazują jednak (par. 22), że&nbsp;zgoda w&nbsp;relacji nierównowagi jest ważna, jeżeli odmowa nie pociąga za&nbsp;sobą negatywnych konsekwencji. Propozycja dokładnie ten warunek implementuje: zdanie drugie nakłada na&nbsp;prowadzącego obowiązek zapewnienia równoważnej drogi realizacji efektów uczenia się, a&nbsp;klauzula końcowa wprost wyklucza jakiekolwiek negatywne konsekwencje odmowy lub wycofania zgody. Powołanie się explicite na&nbsp;art. 4 pkt 11 i&nbsp;art. 7 RODO precyzuje standard „dobrowolności". Oparcie wyłącznie na&nbsp;art. 6 ust. 1 lit. e RODO (zadanie publiczne) byłoby możliwe, ale&nbsp;osłabiłoby praworządnościowy charakter propozycji: zgoda jest dla&nbsp;uczestnika narzędziem aktywnym (musi się dowiedzieć, musi się zgodzić, może się sprzeciwić), a&nbsp;zadanie publiczne nie wymaga jego wiedzy i&nbsp;działania. Propozycja zachowuje zatem zgodę jako instrument świadomego udziału uczestnika i&nbsp;jednocześnie zabezpiecza jej dobrowolność zgodnie ze&nbsp;standardami EROD.</p></div>
-            </div>
-          </div>
-        </details>
-        <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
             <p>Propozycja dodaje jeden ustęp – przywraca konkretną klauzulę z&nbsp;98/2023, podnosząc ją z&nbsp;trybu rekomendacyjnego („mieli na&nbsp;uwadze") do&nbsp;wiążącego („wymaga"), i&nbsp;dodaje jedno zdanie z&nbsp;mechanizmem alternatywy. Framing: przywrócenie i&nbsp;uściślenie operacyjnego mostu między obowiązkiem RODO a&nbsp;praktyką dydaktyczną, nie „uchwała usunęła ochronę danych". Klasa praworządnościowa – utrata operacjonalizacji, nie zniknięcie normy; świadomie nie framowane jako pogwałcenie prawa podstawowego. Propozycja jest nieco większa niż samo odesłanie, lecz konieczna i&nbsp;mała: jeden ustęp, dwa zdania.</p>
-            <p class="note-inline" style="margin-top:1em;">Higiena źródeł: dokument Inspektora Ochrony Danych UW o&nbsp;narzędziach AI („Wskazówki IOD w&nbsp;sprawie wykorzystywania narzędzi sztucznej inteligencji") nosi datę 24.02.2025 – wcześniejsze odniesienia do&nbsp;„marca 2021" są błędne i&nbsp;nie wchodzą do&nbsp;warstwy argumentacyjnej.</p>
           </div>
         </details>
         <details class="dsec">
@@ -1735,8 +1677,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-07 ========== -->
-  <article class="unit tura2" id="s07">
+  <article class="unit" id="s07">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 6</span><span class="unit-para">§ 6 – nowy ust. 1a</span>
@@ -1763,12 +1704,12 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
+            <span class="vmark">Czy to wystarcza</span>
             <p>Po wejściu PO stanem domyślnym dla egzaminu pisemnego jest zakaz, a&nbsp;dopuszczenie SI wymaga aktywnej decyzji egzaminatora. Przywrócenie twardego „niedopuszczalne" usuwa ryzyko 1:1 – ryzykiem była po&nbsp;prostu nieobecność tego zdania. Miękka rekomendacja („rekomenduje się rozważenie zasad") byłaby niewystarczająca: zamieniłaby twardy standard na&nbsp;sugestię.</p>
           </div>
         </div>
         <aside class="matryca">
-          <span class="label">Matryca – mniej kosztu = lepiej</span>
+          <span class="label">Charakterystyka propozycji</span>
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">kompromisowa</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">wysoki</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">nieznany – brak śladu stanowiska</span></div><div class="dots"><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
@@ -1781,33 +1722,16 @@ html[data-grad-level="max"] .tally .big{
           <div class="dsec-body">
             <ul class="arglist">
               <li>Obowiązująca wcześniej uchwała 98/2023 § 4 ust. 3 zawierała domyślny zakaz SI na&nbsp;egzaminach pisemnych. Projekt nie zawiera ekwiwalentu – znika cały domyślny standard. <span class="src">[uchwała 98/2023 URK]</span></li>
-              <li>Akt sam sobie przeczy: § 6 ust. 1 projektu odchodzi od&nbsp;weryfikacji wyłącznie pracą pisemną przygotowywaną poza zajęciami, a&nbsp;jednoczesne usunięcie zakazu osłabia egzamin w&nbsp;sali – najprostszą formę bezpiecznej weryfikacji. To wewnętrzna niesprzeczność aktu, norma techniki prawodawczej, nie zewnętrzna krytyka. <span class="src">[paradoks redakcyjny, obserwacja diff #25]</span></li>
-              <li>Przywrócenie zdania verbatim z&nbsp;98/2023 usuwa ryzyko dokładnie 1:1 – ryzyko to po&nbsp;prostu nieobecność jednego zdania. Framing „uspójnienie" jest tu autentyczny. <span class="src">[wystarczalność minimalna]</span></li>
+              <li>Akt sam sobie przeczy: § 6 ust. 1 projektu odchodzi od&nbsp;weryfikacji wyłącznie pracą pisemną przygotowywaną poza zajęciami, a&nbsp;jednoczesne usunięcie zakazu osłabia egzamin w&nbsp;sali – najprostszą formę bezpiecznej weryfikacji. To wewnętrzna niesprzeczność aktu, norma techniki prawodawczej, nie zewnętrzna krytyka. <span class="src">[analiza spójności wewnętrznej projektu: § 6 ust. 1 wobec usuniętego zakazu]</span></li>
+              <li>Przywrócenie zdania verbatim z&nbsp;98/2023 usuwa ryzyko dokładnie 1:1 – ryzyko to po&nbsp;prostu nieobecność jednego zdania. Framing „uspójnienie" jest tu autentyczny. <span class="src">[przywrócenie verbatim § 4 ust. 3 uchwały 98/2023]</span></li>
               <li>Politechnika Łódzka (Zarządzenie 31/2025) zachowuje domyślny zakaz: „korzystanie z&nbsp;narzędzi SI podczas egzaminów i&nbsp;kolokwiów jest zabronione, chyba że&nbsp;polecenia egzaminacyjne wyraźnie na&nbsp;to pozwalają" – polski, świeży kontrwzorzec. <span class="src">[Politechnika Łódzka, Zarządzenie 31/2025]</span></li>
             </ul>
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">3 zastrzeżenia</span></summary>
-          <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Nazwanie tego „regresją standardu bezpieczeństwa" i&nbsp;framowanie jako problem konstytucyjny jest zawyżone – usunięcie domyślnego zakazu nie uruchamia żadnej normy wyższego rzędu.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne, wbudowane w&nbsp;propozycję</span><p>Zgoda – i&nbsp;dlatego propozycja konsekwentnie pozycjonuje Propozycję 6 jako jednostkę redakcyjno-strukturalną, <em>nie</em> konstytucyjną. Etykieta „regresja standardu bezpieczeństwa" jest świadomie odrzucona (fałszywa kwalifikacja prawna podważyłaby cały pakiet). Kotwicą nie jest norma wyższego rzędu, lecz wewnętrzna niesprzeczność aktu – a&nbsp;spójność wewnętrzna to uznana norma techniki prawodawczej. Framing: „uspójnienie § 5 i&nbsp;§ 6 z&nbsp;§ 6 ust. 1".</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wątek usunięcia zakazu nie pojawił się na&nbsp;konsultacjach jako osobny temat – koszt polityczny tej zmiany jest nieznany, nie niski. Wniesienie jej do&nbsp;pierwszej tury to zakład.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne, rozstrzyga o&nbsp;turze</span><p>To właśnie powód, dla którego Propozycja 6 jest jednostką tury 2, nie pierwszej – mimo mocnej kotwicy. Pierwsza tura ma otwierać kanał zaufania jednostkami o&nbsp;znanej, wysokiej pogodliwości; Propozycja 6 bez śladu stanowiska zespołu byłaby tam zakładem. Jest jednak kandydatem nr 1 tury 2: kotwica gotowa, framing autentyczny. Jeśli reakcja zespołu na&nbsp;pierwszą turę będzie ciepła, Propozycja 6 wchodzi natychmiast.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wytknięcie autorowi, że&nbsp;usunął zapis z&nbsp;poprzedniej uchwały, czyta się jako zarzut, że&nbsp;nie przejrzał własnego projektu – to upokarzające dla zespołu.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Dlatego framing stoi na&nbsp;wewnętrznej niesprzeczności aktu, nie na&nbsp;„przeoczeniu". Mechanizm jest neutralny: § 6 ust. 1 i&nbsp;brak domyślnego zakazu razem tworzą napięcie – to obserwacja o&nbsp;spójności, nie diagnoza zaniedbania. Przywrócenie jednego zdania jest najmniej konfrontacyjną z&nbsp;możliwych poprawek: propozycja niczego nie wymyśla, przywraca konstrukcję, którą URK sama napisała w&nbsp;2023 r.</p></div>
-            </div>
-          </div>
-        </details>
-        <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
-            <p>Przywrócenie jednego zdania verbatim z&nbsp;98/2023, zero rozbudowy. Stan domyślny to zakaz, ale dopuszczenie wymaga jedynie aktywnej decyzji egzaminatora wyrażonej w&nbsp;poleceniach – elastyczność zachowana. Klasa wagi redakcyjno-strukturalna – świadomie nie framowane konstytucyjnie. Próg wymaga przywrócenia twardego „niedopuszczalne"; miękka rekomendacja byłaby niewystarczająca. Tura 2, kandydat nr 1 – nie pierwsza tura, bo&nbsp;brak śladu stanowiska zespołu z&nbsp;konsultacji.</p>
+            <p>Przywrócenie jednego zdania verbatim z&nbsp;98/2023, zero rozbudowy. Stan domyślny to zakaz, ale dopuszczenie wymaga jedynie aktywnej decyzji egzaminatora wyrażonej w&nbsp;poleceniach – elastyczność zachowana. Klasa wagi redakcyjno-strukturalna – świadomie nie framowane konstytucyjnie. Próg wymaga przywrócenia twardego „niedopuszczalne"; miękka rekomendacja byłaby niewystarczająca. Poprawka jest gotowa do&nbsp;zgłoszenia, choć z&nbsp;ostrożnością co&nbsp;do&nbsp;momentu, ponieważ brakuje śladu stanowiska zespołu z&nbsp;konsultacji w&nbsp;tej konkretnej sprawie.</p>
           </div>
         </details>
         <details class="dsec">
@@ -1843,7 +1767,6 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-01 ========== -->
   <article class="unit tura2" id="s01">
     <div class="unit-head">
       <div class="unit-tags">
@@ -1871,7 +1794,7 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
+            <span class="vmark">Dlaczego ta zmiana wystarcza</span>
             <p>Propozycja wprowadza próg banalności (korektor pisowni i&nbsp;narzędzia drobnej korekty poza reżimem oświadczenia i&nbsp;dziennika) oraz rozróżnia narzędzia generatywne i&nbsp;agentowe – usuwa nadmierną szerokość definicji. Pozostawienie samej definicji bez wyłączeń byłoby niewystarczające.</p>
           </div>
         </div>
@@ -1885,7 +1808,7 @@ html[data-grad-level="max"] .tally .big{
       </div>
       <div class="callout" style="margin:18px 0 4px;">
         <span class="label">Blok logiczny: Propozycja 7 + Propozycja 8 + Propozycja 9</span>
-        <p>Propozycja 7 jest fundamentem. Bez progu banalności w&nbsp;§ 1 propozycje 8 (oświadczenie) i&nbsp;9 (dziennik) są substancjalnie puste – zawężenie samego § 6 bez § 1 tworzyłoby akt wewnętrznie sprzeczny. Trzy jednostki tworzą jedną spójną zmianę osi „zakres reżimu AI" i&nbsp;wchodzą do&nbsp;tury 2 razem.</p>
+        <p>Propozycja 7 jest fundamentem. Bez progu banalności w&nbsp;§ 1 propozycje 8 (oświadczenie) i&nbsp;9 (dziennik) są substancjalnie puste – zawężenie samego § 6 bez § 1 tworzyłoby akt wewnętrznie sprzeczny. Trzy jednostki tworzą jedną spójną zmianę osi „zakres reżimu AI" i&nbsp;należy je rozpatrywać łącznie.</p>
       </div>
       <div class="expand">
         <details class="dsec">
@@ -1894,22 +1817,9 @@ html[data-grad-level="max"] .tally .big{
             <ul class="arglist">
               <li>Definicja verbatim obejmuje korektor pisowni, autouzupełnianie, system rekomendacji literatury. Identyczne obowiązki obciążają narzędzie trywialne i&nbsp;system agentowy – nadmierna szerokość. <span class="src">[§ 1 ust. 2 projektu]</span></li>
               <li>Norma nakładająca te same obowiązki na&nbsp;zastosowania niskiego i&nbsp;wysokiego ryzyka jest nieproporcjonalna – klasa redakcyjna z&nbsp;cieniem proporcjonalności. <span class="src">[art. 31 ust. 3 Konstytucji RP]</span></li>
-              <li>Propozycja 7 jest jednostką-fundamentem: bez progu w&nbsp;§ 1 propozycje 8 i&nbsp;9 są substancjalnie puste, a&nbsp;akt staje się wewnętrznie sprzeczny (§ 1 „system SI = wszystko" wobec § 6 „oświadczasz tylko generatywne"). <span class="src">[graf zależności jednostek]</span></li>
+              <li>Propozycja 7 jest jednostką-fundamentem: bez progu w&nbsp;§ 1 propozycje 8 i&nbsp;9 są substancjalnie puste, a&nbsp;akt staje się wewnętrznie sprzeczny (§ 1 „system SI = wszystko" wobec § 6 „oświadczasz tylko generatywne").</li>
               <li>Sam unijny akt o&nbsp;SI zawiera wyłączenie dla standardowej edycji (art. 50 ust. 2), a&nbsp;Uniwersytet Cambridge wprost wyłącza korektory pisowni z&nbsp;obowiązku deklaracji – bezpośredni wzorzec progu banalności. <span class="src">[EU AI Act art. 50 ust. 2; Cambridge, polityka AI wydziału informatyki]</span></li>
             </ul>
-          </div>
-        </details>
-        <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">2 zastrzeżenia</span></summary>
-          <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Definicja jest przejęta verbatim z&nbsp;unijnego aktu o&nbsp;SI – nie wolno jej ruszać, bo&nbsp;to harmonizacja z&nbsp;prawem UE.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja <em>nie</em> rusza definicji. Definicja art. 3 pkt 1 zostaje nietknięta – dodaje się odrębny ustęp wprowadzający rozróżnienie i&nbsp;próg. Postulat „zastąpić definicję" rozwiązywałby problem nieistniejący i&nbsp;czytałby się jako dowód, że&nbsp;pakiet pisano bez czytania projektu. Stopniowanie ryzyka nie usuwa definicji – buduje wokół niej kontekst, który sam akt UE zakłada.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wprowadzanie kategoryzacji to spór o&nbsp;technikę legislacyjną z&nbsp;autorem, który świadomie wybrał ramowy charakter uchwały.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – częściowo trafne</span><p>Dlatego Propozycja 7 jest jednostką tury 2, nie pierwszej, i&nbsp;wchodzi jako jeden blok z&nbsp;Propozycją 8 i&nbsp;Propozycją 9. Próg banalności nie jest jednak sporem o&nbsp;filozofię uchwały – jest usunięciem absurdu (obowiązek deklarowania użycia korektora pisowni przy każdej z&nbsp;kilkunastu prac w&nbsp;semestrze), per analogia do&nbsp;wyłączenia, które samo prawo UE zawiera w&nbsp;art. 50 ust. 2.</p></div>
-            </div>
           </div>
         </details>
         <details class="dsec">
@@ -1941,7 +1851,6 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-09 ========== -->
   <article class="unit tura2" id="s09">
     <div class="unit-head">
       <div class="unit-tags">
@@ -1970,7 +1879,7 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS (jako pakiet Propozycja 7 + Propozycja 8)</span>
+            <span class="vmark">Dlaczego ta zmiana wystarcza (jako pakiet Propozycja 7 i Propozycja 8)</span>
             <p>Propozycja zawęża obowiązek oświadczenia do&nbsp;SI o&nbsp;znaczącym wpływie i&nbsp;wprost wyłącza narzędzia banalne. Zawężenie samego § 6 bez progu w&nbsp;§ 1 byłoby niewystarczające – akt stałby się wewnętrznie sprzeczny. Dlatego Propozycja 8 wchodzi wyłącznie razem z&nbsp;Propozycją 7.</p>
           </div>
         </div>
@@ -1996,20 +1905,13 @@ html[data-grad-level="max"] .tally .big{
         <details class="dsec">
           <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">2 zastrzeżenia</span></summary>
           <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Obowiązek oświadczenia jest pożądany i&nbsp;spójny z&nbsp;duchem transparentności – po&nbsp;co&nbsp;go osłabiać?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja nie znosi obowiązku – zawęża jego zakres do&nbsp;SI o&nbsp;znaczącym wpływie i&nbsp;wyłącza narzędzia banalne. To uściślenie, nie osłabienie. Obowiązek deklaracji narzędzi generatywnych i&nbsp;agentowych pozostaje w&nbsp;pełni; znika tylko absurd deklarowania korektora pisowni.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Zawężenie samego § 6 wystarczy – po&nbsp;co&nbsp;wiązać to z&nbsp;§ 1?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne, dlatego blok</span><p>Zawężenie § 6 bez progu w&nbsp;§ 1 tworzy akt wewnętrznie sprzeczny: § 1 mówi „system SI = wszystko", § 6 mówi „oświadczasz tylko generatywne" – organ orzekający dostaje dwie kolidujące normy. Dlatego Propozycja 8 wchodzi wyłącznie jako pakiet z&nbsp;Propozycją 7; samodzielnie jest niewystarczająca.</p></div>
-            </div>
+            <p>Dwie wątpliwości warto rozwiać z&nbsp;góry. Po pierwsze, propozycja nie znosi obowiązku oświadczenia, lecz zawęża jego zakres do&nbsp;systemów SI o&nbsp;znaczącym wpływie (generatywnych i&nbsp;agentowych) oraz wyłącza narzędzia banalne; obowiązek deklaracji narzędzi generatywnych i&nbsp;agentowych pozostaje w&nbsp;pełni, znika tylko deklarowanie korektora pisowni. Po drugie, zawężenie samego § 6 bez progu w&nbsp;§ 1 tworzyłoby akt wewnętrznie sprzeczny (§ 1 obejmuje definicją „wszystko", § 6 zawężałby oświadczenie do&nbsp;narzędzi generatywnych), dlatego Propozycja 8 wchodzi łącznie z&nbsp;Propozycją 7.</p>
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
+          <summary><span class="chev">+</span> Najmniejsza konieczna zmiana <span class="scount">zakres zmiany</span></summary>
           <div class="dsec-body">
-            <p>Zmiana w&nbsp;jednym ustępie: zawężenie zakresu plus zdanie odsyłające do&nbsp;progu z&nbsp;§ 1. Ustępy 4 i&nbsp;5 (doprecyzowujące ust. 3) pozostają bez zmian. Propozycje 7 i&nbsp;8 traktowane jako jedna logiczna zmiana – wchodzą do&nbsp;tury 2 razem, więc nie rozszerzają liczby wątków pierwszej tury.</p>
+            <p>Najmniejsza konieczna zmiana. Zmiana w&nbsp;jednym ustępie: zawężenie zakresu plus zdanie odsyłające do&nbsp;progu z&nbsp;§ 1. Ustępy 4 i&nbsp;5 (doprecyzowujące ust. 3) pozostają bez zmian. Propozycje 7 i&nbsp;8 stanowią jedną spójną zmianę i&nbsp;powinny być rozpatrywane łącznie.</p>
           </div>
         </details>
         <details class="dsec">
@@ -2040,8 +1942,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-10 ========== -->
-  <article class="unit tura2" id="s10">
+  <article class="unit" id="s10">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 9</span><span class="unit-para">§ 6 ust. 6</span>
@@ -2069,12 +1970,12 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict warun">
-            <span class="vmark">Test wystarczalności – PASS / część (a) warunkowo</span>
+            <span class="vmark">Ocena wystarczalności: ochrona danych domyka się samodzielnie; część (a) warunkowo</span>
             <p>Część dotycząca ochrony danych (wyłączenie danych wrażliwych i&nbsp;danych osób trzecich) domyka się tym brzmieniem samodzielnie. Część dotycząca wykonalności dla AI agentowego jest złagodzona przez „kluczowe polecenia", lecz jej pełne domknięcie wymaga, by blok § 1 zawierał zdanie definiujące pojęcie „polecenie (prompt)" – rekomendacja dla bloku Propozycji 7.</p>
           </div>
         </div>
         <aside class="matryca">
-          <span class="label">Matryca – mniej kosztu = lepiej</span>
+          <span class="label">Ocena propozycji</span>
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">wysoka</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">średni</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">minimalny</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
@@ -2086,29 +1987,22 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">3 argumenty</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>„Dziennik promptów" jest niezdefiniowany i&nbsp;niewykonalny dla AI agentowego – system taki wykonuje setki autonomicznych akcji z&nbsp;jednego polecenia; bez definicji student nie wie, co&nbsp;zapisać. <span class="src">[wykonalność operacyjna]</span></li>
+              <li>„Dziennik promptów" jest niezdefiniowany i&nbsp;niewykonalny dla AI agentowego – system taki wykonuje setki autonomicznych akcji z&nbsp;jednego polecenia; bez definicji student nie wie, co&nbsp;zapisać. <span class="src">[podstawa: wykonalność]</span></li>
               <li>Dziennik promptów może wymusić ujawnienie danych szczególnych kategorii (poglądy, zdrowie, orientacja) oraz danych osób trzecich, a&nbsp;także procesów myślowych studenta. <span class="src">[RODO art. 9; art. 47 i&nbsp;51 ust. 1 Konstytucji RP]</span></li>
-              <li>Praktycznie żaden czołowy precedens (Cambridge, Oxford, ETH) nie wymaga dziennika promptów – URK z&nbsp;takim wymogiem byłby odstającym przypadkiem. <span class="src">[brak precedensu uczelnianego]</span></li>
+              <li>Praktycznie żaden czołowy precedens (Cambridge, Oxford, ETH) nie wymaga dziennika promptów – URK z&nbsp;takim wymogiem byłby odstającym przypadkiem. <span class="src">[podstawa: precedens uczelniany]</span></li>
             </ul>
           </div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">2 zastrzeżenia</span></summary>
           <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Dziennik promptów zwiększa transparentność – to dobry mechanizm dowodowy, także obrony studenta przed fałszywym oskarżeniem detektora.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – częściowo trafne</span><p>Tak, dziennik bywa dowodem obrony – ale tylko jeśli jest wykonalny i&nbsp;nie wymusza ujawnienia danych wrażliwych. Propozycja zachowuje fakultatywność dziennika i&nbsp;czyni go wykonalnym („dziennik kluczowych poleceń"), jednocześnie wyłączając dane wrażliwe. Funkcja dowodowa zostaje, ryzyko RODO znika.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Inne uczelnie nie wymagają dziennika promptów i&nbsp;działają – po&nbsp;co&nbsp;URK go w&nbsp;ogóle utrzymuje?</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź</span><p>Całkowite usunięcie ustępu wykraczałoby poza propozycję minimalną. Propozycja zachowuje ust. 6 jako fakultatywny – jakim już jest – tylko czyni go wykonalnym i&nbsp;bezpiecznym z&nbsp;punktu widzenia ochrony danych. To uściślenie istniejącego mechanizmu, nie jego likwidacja ani rozbudowa.</p></div>
-            </div>
+            <p>Częste wątpliwości. Czy dziennik promptów nie zwiększa po&nbsp;prostu przejrzystości i&nbsp;nie chroni studenta przed błędem detektora? Funkcja dowodowa pozostaje, ale działa tylko wtedy, gdy zapis jest wykonalny i&nbsp;nie wymusza ujawnienia danych wrażliwych; propozycja zachowuje fakultatywność i&nbsp;wyłącza takie dane. Czy skoro inne uczelnie nie wymagają dziennika, ustęp nie powinien zniknąć w&nbsp;całości? Całkowite usunięcie wykraczałoby poza zmianę minimalną – ustęp pozostaje fakultatywny, zostaje jedynie doprecyzowany i&nbsp;zabezpieczony pod&nbsp;kątem ochrony danych.</p>
           </div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
-            <p>Trzy ruchy w&nbsp;już fakultatywnym ustępie, jedno zdanie dodane. Zespół URK na&nbsp;konsultacjach nie wykazywał przywiązania do&nbsp;tej klauzuli. Część dotycząca ochrony danych domyka się samodzielnie. Pełne domknięcie wykonalności dla AI agentowego wymaga, by blok § 1 (Propozycja 7) zawierał krótkie zdanie definiujące „polecenie (prompt)" – stąd rekomendacja dla bloku. To rekomendacja redakcyjna, nie osobna propozycja.</p>
+            <p>Zakres zmiany. Trzy doprecyzowania w&nbsp;już fakultatywnym ustępie i&nbsp;jedno dodane zdanie. Część dotycząca ochrony danych domyka się samodzielnie. Pełne domknięcie wykonalności dla AI agentowego wymaga, by blok § 1 (Propozycja 7) zawierał krótkie zdanie definiujące pojęcie „polecenie (prompt)" – stąd rekomendacja redakcyjna dla tego bloku, a&nbsp;nie osobna propozycja.</p>
           </div>
         </details>
         <details class="dsec">
@@ -2139,8 +2033,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-14 ========== -->
-  <article class="unit tura2" id="s14">
+  <article class="unit" id="s14">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 10</span><span class="unit-para">§ 9 – nowy ust. 3</span>
@@ -2167,15 +2060,15 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
+            <span class="vmark">Ocena wystarczalności: brzmienie domyka cel samodzielnie</span>
             <p>Tryb obligatoryjny („dokonuje", nie „może dokonać"), cykliczny interwał i&nbsp;obowiązek publikacji wyników usuwają ryzyko regulacji nieaktualizowanej. Klauzula fakultatywna („URK może dokonać przeglądu") byłaby niewystarczająca.</p>
           </div>
         </div>
         <aside class="matryca">
-          <span class="label">Matryca – mniej kosztu = lepiej</span>
+          <span class="label">Ocena propozycji</span>
           <div class="metric"><div class="mname"><span>Otwartość zespołu</span><span class="mval">kompromisowa</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
           <div class="metric"><div class="mname"><span>Wpływ</span><span class="mval">średni</span></div><div class="dots"><i class="dot f"></i><i class="dot f"></i><i class="dot f"></i><i class="dot"></i><i class="dot"></i></div></div>
-          <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">średni – wrażliwość autora wobec dat</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
+          <div class="metric"><div class="mname"><span>Koszt polityczny</span><span class="mval">średni</span></div><div class="dots"><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost f"></i><i class="dot cost"></i><i class="dot cost"></i></div></div>
           <div class="metric"><div class="mname"><span>Wymóg mocniejszego brzmienia</span></div><span class="mflag no">nie</span></div>
         </aside>
       </div>
@@ -2184,29 +2077,16 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">3 argumenty</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>Obowiązująca wcześniej 98/2023 miała mechanizm wygaśnięcia; projekt – bezterminowy i&nbsp;bez przeglądu – grozi „regulacją-zombie": nazwy narzędzi z&nbsp;2026 r. staną się anachronizmem w&nbsp;akcie obowiązującym w&nbsp;2030 r. <span class="src">[regres względem 98/2023]</span></li>
+              <li>Obowiązująca wcześniej 98/2023 miała mechanizm wygaśnięcia; projekt – bezterminowy i&nbsp;bez przeglądu – grozi „regulacją-zombie": nazwy narzędzi z&nbsp;2026 r. staną się anachronizmem w&nbsp;akcie obowiązującym w&nbsp;2030 r. <span class="src">[podstawa: porównanie z 98/2023]</span></li>
               <li>98/2023 wprost uzasadniała mechanizm cykliczny „intensywnym rozwojem systemów SI i&nbsp;wynikającą z&nbsp;niego koniecznością ciągłego dostosowywania". Tempo rozwoju AI nie zwolniło – argument jest w&nbsp;2026 r. mocniejszy, nie słabszy. URK nie wyjaśnia, czemu usuwa klauzulę, której własne uzasadnienie nadal działa. <span class="src">[uchwała 98/2023, § 6 ust. 1]</span></li>
               <li>Przewodnicząca KRASP w&nbsp;wypowiedzi medialnej (PAP 12.06.2025), a&nbsp;także akty normatywne ETH Zurich i&nbsp;Politechniki Warszawskiej zawierają jawne klauzule cyklicznej rewizji – brak takiego mechanizmu w&nbsp;projekcie odbiega od&nbsp;dobrej praktyki krajowej i&nbsp;międzynarodowej. <span class="src">[ETH Zurich; Politechnika Warszawska 1/L/2024 pkt 9]</span></li>
             </ul>
           </div>
         </details>
         <details class="dsec">
-          <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">2 zastrzeżenia</span></summary>
-          <div class="dsec-body">
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Autor projektu jest wyczulony na&nbsp;daty wygaśnięcia – 98/2023 sam wpisał „okres przydatności" i&nbsp;uchwała się przeterminowała. Wnoszenie klauzuli wygaśnięcia uderza w&nbsp;jego doświadczenie.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne, dlatego propozycja NIE przywraca daty wygaśnięcia</span><p>Propozycja wprowadza wyłącznie obowiązkowy przegląd – meta-klauzulę cyklicznej oceny, bez daty wygaśnięcia. Usuwa to ryzyko „regulacji-zombie" bez powtarzania konstrukcji, na&nbsp;której potknęła się 98/2023: akt nie znika nagle, jest tylko cyklicznie oceniany.</p></div>
-            </div>
-            <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Argument, że&nbsp;bezterminowa uchwała ogranicza wolność nauczania, jest naciągany – to nie jest problem konstytucyjny.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – trafne</span><p>Dlatego Propozycja 10 ma klasę redakcyjno-strukturalną i&nbsp;świadomie nie jest framowany konstytucyjnie. Argument stoi na&nbsp;dobrej praktyce regulacyjnej i&nbsp;regresie względem własnego aktu URK, nie na&nbsp;normie wyższego rzędu.</p></div>
-            </div>
-          </div>
-        </details>
-        <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
-            <p>Jeden ustęp, tryb obligatoryjny, interwał 24 miesięcy, obowiązek publikacji. Świadomie bez daty wygaśnięcia – honoruje wrażliwość autora i&nbsp;ramowy charakter uchwały (przegląd to meta-klauzula, nie zmiana treści). Niska friction – dobry wczesny kandydat tury 2.</p>
+            <p>Jeden ustęp, tryb obligatoryjny, interwał 24 miesięcy, obowiązek publikacji. Świadomie bez daty wygaśnięcia: przegląd jest meta-klauzulą cyklicznej oceny, a&nbsp;nie zmianą treści uchwały, i&nbsp;respektuje ramowy charakter aktu.</p>
           </div>
         </details>
         <details class="dsec">
@@ -2242,8 +2122,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-08 ========== -->
-  <article class="unit tura2" id="s08">
+  <article class="unit" id="s08">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 11</span><span class="unit-para">§ 6 ust. 1</span>
@@ -2269,9 +2148,9 @@ html[data-grad-level="max"] .tally .big{
               <div class="lawtext">„Rekomenduje się, aby weryfikacja efektów uczenia się nie była dokonywana wyłącznie na&nbsp;podstawie pracy pisemnej przygotowanej przez osobę studiującą poza zajęciami <span class="ins">oraz aby obejmowała co&nbsp;najmniej jeden element realizowany w&nbsp;bezpośrednim kontakcie z&nbsp;osobą studiującą, potwierdzający samodzielne osiągnięcie efektów uczenia się i&nbsp;niemający charakteru wyłącznie formalnego</span>. Decyzje w&nbsp;tej sprawie podejmuje rada dydaktyczna (...)."</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Po wejściu PO „nie wyłącznie" nie da się spełnić czynnością pozorną – wymagany jest co&nbsp;najmniej jeden niepozorny element weryfikacji w&nbsp;bezpośrednim kontakcie. Rekomendacja bez progu pozostawiłaby nieostrość. Rada dydaktyczna nadal decyduje o&nbsp;szczegółach.</p>
+          <div class="verdict">
+            <span class="vmark">Co zmiana faktycznie zamyka</span>
+            <p>Po wejściu wersji „Po" warunku „nie wyłącznie" nie da się spełnić czynnością pozorną: wymagany jest co&nbsp;najmniej jeden niepozorny element weryfikacji w&nbsp;bezpośrednim kontakcie. Sama rekomendacja bez progu pozostawiałaby nieostrość. Rada dydaktyczna nadal decyduje o&nbsp;szczegółach.</p>
           </div>
         </div>
         <aside class="matryca">
@@ -2287,8 +2166,8 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">3 argumenty</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>Bez progu „nie wyłącznie" da się spełnić czynnością pozorną – pięciominutowa rozmowa pro forma obok eseju formalnie czyni weryfikację „nie-wyłączną". <span class="src">[nieostrość brzmienia]</span></li>
-              <li>Miękka rekomendacja plus delegacja do&nbsp;rady dydaktycznej bez mierzalnego progu pozwala przenieść każdy negatywny skutek na&nbsp;rady – rekomendacja bez progu jest pusta. <span class="src">[obserwacja diff #27]</span></li>
+              <li>Bez progu „nie wyłącznie" da się spełnić czynnością pozorną – pięciominutowa rozmowa pro forma obok eseju formalnie czyni weryfikację „nie-wyłączną".</li>
+              <li>Miękka rekomendacja plus delegacja do&nbsp;rady dydaktycznej bez mierzalnego progu pozwala przenieść każdy negatywny skutek na&nbsp;rady – rekomendacja bez progu jest pusta.</li>
               <li>Zespół URK podczas konsultacji studenckich przyznał problematyczność wstępnego oceniania prac. <span class="src">konsultacje studenckie URK, 21 maja 2026 r.</span></li>
             </ul>
           </div>
@@ -2340,8 +2219,7 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-05 ========== -->
-  <article class="unit tura2" id="s05">
+  <article class="unit" id="s05">
     <div class="unit-head">
       <div class="unit-tags">
         <span class="unit-id">Propozycja 12</span><span class="unit-para">§ 4 – nowy ust. 5</span>
@@ -2367,9 +2245,9 @@ html[data-grad-level="max"] .tally .big{
               <div class="lawtext">„<span class="ins">Wykorzystanie systemów SI wiąże się także z&nbsp;zagrożeniami o&nbsp;charakterze systemowym i&nbsp;pośrednim, w&nbsp;tym: 1) wpływem środowiskowym, w&nbsp;szczególności zużyciem energii i&nbsp;wody związanym z&nbsp;trenowaniem i&nbsp;eksploatacją modeli SI; 2) ryzykiem ekonomicznym, w&nbsp;szczególności uzależnieniem od&nbsp;dostawców systemów SI oraz niestabilnością ich rynku; 3) zagrożeniami dla dobrostanu psychicznego, w&nbsp;szczególności ryzykiem nadmiernego uzależnienia oraz wzmacniania przekonań osoby studiującej przez system SI; 4) ryzykiem związanym ze&nbsp;wspieraniem oceniania prac przez systemy SI, w&nbsp;szczególności podatnością wyniku systemu SI na&nbsp;uprzedzenia (bias) oraz jego wariancją stochastyczną, ograniczoną przejrzystością kryteriów stosowanych przez system SI przy generowaniu informacji zwrotnej, a&nbsp;także ryzykiem zastąpienia samodzielnej oceny prowadzącego wynikiem narzędzia.</span>"</div>
             </div>
           </div>
-          <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
-            <p>Po zmianie katalog § 4 explicite wymienia cztery zagrożenia systemowe i&nbsp;pośrednie: środowiskowe, ekonomiczne, dla dobrostanu psychicznego oraz związane ze&nbsp;wspieraniem oceniania prac przez systemy SI – symetria z&nbsp;katalogiem korzyści § 3 ust. 2 pkt 4 i&nbsp;§ 3 ust. 3 pkt 6 zamknięta 1:1. Pominięcie którejkolwiek z&nbsp;pozycji byłoby niewystarczające.</p>
+          <div class="verdict">
+            <span class="vmark">Co zmiana faktycznie zamyka</span>
+            <p>Po zmianie katalog § 4 explicite wymienia cztery zagrożenia systemowe i&nbsp;pośrednie: środowiskowe, ekonomiczne, dla dobrostanu psychicznego oraz związane ze&nbsp;wspieraniem oceniania prac przez systemy SI, domykając symetrię z&nbsp;katalogiem korzyści § 3 ust. 2 pkt 4 i&nbsp;§ 3 ust. 3 pkt 6. Pominięcie którejkolwiek z&nbsp;tych pozycji pozostawiałoby asymetrię analityczną.</p>
           </div>
         </div>
         <aside class="matryca">
@@ -2385,10 +2263,10 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">4 argumenty</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>Katalog § 4 jest adresowo-podmiotowy i&nbsp;pomija zagrożenia systemowe: wpływ środowiskowy modeli, ryzyko ekonomiczne (uzależnienie, bańka), ostrzejsze ryzyka psychiczne dużych modeli językowych. <span class="src">[luka katalogowa]</span></li>
-              <li>Ryzyko jest wąsko zdefiniowane jako luka informacyjna – dopis jednego lub dwóch punktów ją zamyka, bez interpretacji i&nbsp;bez rozbudowy. <span class="src">[wystarczalność minimalna]</span></li>
+              <li>Katalog § 4 jest adresowo-podmiotowy i&nbsp;pomija zagrożenia systemowe: wpływ środowiskowy modeli, ryzyko ekonomiczne (uzależnienie, bańka), ostrzejsze ryzyka psychiczne dużych modeli językowych.</li>
+              <li>Ryzyko jest wąsko zdefiniowane jako luka informacyjna – dopis jednego lub dwóch punktów ją zamyka, bez interpretacji i&nbsp;bez rozbudowy.</li>
               <li>Wszystkie cztery wątki – wpływ środowiskowy, ryzyko ekonomiczne, dobrostan psychiczny, wsparcie oceniania – zostały podniesione podczas konsultacji studenckich URK 21 maja 2026 r.; w&nbsp;trzech pierwszych odnotowano wówczas reakcję pozytywną zespołu opracowującego projekt („cieszę się, że&nbsp;zostały poruszone"). <span class="src">konsultacje studenckie URK, 21 maja 2026 r.</span></li>
-              <li>Katalog korzyści § 3 ust. 2 pkt 4 i&nbsp;§ 3 ust. 3 pkt 6 explicite wymienia „wsparcie oceniania" jako korzyść (wstępne ocenianie prac; informacja zwrotna przed oddaniem pracy). Brak odpowiadającej pozycji w&nbsp;katalogu zagrożeń § 4 tworzy asymetrię analityczną – propozycja zamyka tę symetrię informacyjnie, bez wprowadzania nowego obowiązku. <span class="src">[symetria § 3 ↔ § 4]</span></li>
+              <li>Katalog korzyści § 3 ust. 2 pkt 4 i&nbsp;§ 3 ust. 3 pkt 6 explicite wymienia „wsparcie oceniania" jako korzyść (wstępne ocenianie prac; informacja zwrotna przed oddaniem pracy). Brak odpowiadającej pozycji w&nbsp;katalogu zagrożeń § 4 tworzy asymetrię analityczną – propozycja zamyka tę symetrię informacyjnie, bez wprowadzania nowego obowiązku.</li>
             </ul>
           </div>
         </details>
@@ -2397,7 +2275,7 @@ html[data-grad-level="max"] .tally .big{
           <div class="dsec-body">
             <div class="steel">
               <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Kotwica jest słaba – same głosy z&nbsp;konsultacji, bez twardego precedensu na&nbsp;obowiązek ujmowania zagrożeń środowiskowych w&nbsp;akcie o&nbsp;kształceniu.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne</span><p>To najsłabsza kotwica ze&nbsp;wszystkich propozycji – dlatego Propozycja 12 jest jednostką tury 2-3, nie pierwszej. Głosy z&nbsp;konsultacji spełniają minimalny próg zakotwiczenia (głos uczestnika konsultacji jest dopuszczalnym źródłem), co&nbsp;wystarcza dla jednostki niskiego priorytetu, ale nie dla pozycji czołowej. Propozycja jawnie odzwierciedla tę słabość pozycją w&nbsp;sekwencji.</p></div>
+              <div class="riposta"><span class="stag">Odpowiedź – zastrzeżenie trafne</span><p>To najsłabsza kotwica ze&nbsp;wszystkich propozycji, dlatego Propozycja 12 jest jednostką niskiego priorytetu. Głosy z&nbsp;konsultacji spełniają minimalny próg zakotwiczenia (głos uczestnika konsultacji jest dopuszczalnym źródłem), co&nbsp;wystarcza dla jednostki o&nbsp;niskiej wadze, ale nie dla pozycji czołowej. Propozycja jawnie odzwierciedla tę słabość swoją niską wagą.</p></div>
             </div>
             <div class="steel">
               <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>Wpisywanie zagrożeń środowiskowych do&nbsp;uchwały o&nbsp;kształceniu to rozszerzanie mandatu – nie miejsce na&nbsp;to.</p></div>
@@ -2408,7 +2286,7 @@ html[data-grad-level="max"] .tally .big{
         <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
-            <p>Jeden ustęp dopisany do&nbsp;katalogu § 4, trzy punkty (środowiskowy, ekonomiczny, dobrostan psychiczny). Dopis informacyjny, nie nowy mandat – doważenie istniejącego katalogu, nie rozszerzanie kompetencji uchwały. Wątek psychiczny jest trzecim punktem tego samego dopisu, nie osobnym ustępem. Tura 2-3, nie pierwsza – kotwica najsłabsza ze&nbsp;wszystkich propozycji.</p>
+            <p>Jeden ustęp dopisany do&nbsp;katalogu § 4, trzy punkty (środowiskowy, ekonomiczny, dobrostan psychiczny). Dopis informacyjny, nie nowy mandat: doważenie istniejącego katalogu, nie rozszerzanie kompetencji uchwały. Wątek psychiczny jest trzecim punktem tego samego dopisu, nie osobnym ustępem. Jednostka niskiego priorytetu, bo kotwica jest najsłabsza ze&nbsp;wszystkich propozycji.</p>
           </div>
         </details>
         <details class="dsec">
@@ -2459,7 +2337,6 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-13 ========== -->
   <article class="unit tura2" id="s13">
     <div class="unit-head">
       <div class="unit-tags">
@@ -2487,7 +2364,7 @@ html[data-grad-level="max"] .tally .big{
             </div>
           </div>
           <div class="verdict pass">
-            <span class="vmark">Test wystarczalności – PASS</span>
+            <span class="vmark">Czy ta minimalna zmiana wystarcza</span>
             <p>Po zmianie jasne jest, że&nbsp;między wejściem uchwały w&nbsp;życie a&nbsp;rokiem akademickim 2027/2028 obowiązuje ona wprost – luka interpretacyjna okresu przejściowego zamknięta.</p>
           </div>
         </div>
@@ -2504,8 +2381,8 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Dlaczego ta zmiana <span class="scount">2 argumenty</span></summary>
           <div class="dsec-body">
             <ul class="arglist">
-              <li>§ 8 ust. 3 wskazuje rok 2027/2028 jako termin zmian w&nbsp;programach studiów, ale nie określa, jakie zasady AI obowiązują w&nbsp;okresie przejściowym – powstaje luka interpretacyjna na&nbsp;około 16 miesięcy (do&nbsp;1 października 2027 r.). <span class="src">[obserwacja diff #17]</span></li>
-              <li>Jedno zdanie zamyka niejasność 1:1 – organy stosujące uchwałę uzyskują jednoznaczną regułę na&nbsp;okres przejściowy. <span class="src">[wystarczalność minimalna]</span></li>
+              <li>§ 8 ust. 3 wskazuje rok 2027/2028 jako termin zmian w&nbsp;programach studiów, ale nie określa, jakie zasady AI obowiązują w&nbsp;okresie przejściowym – powstaje luka interpretacyjna na&nbsp;około 16 miesięcy (do&nbsp;1 października 2027 r.).</li>
+              <li>Jedno zdanie zamyka niejasność 1:1 – organy stosujące uchwałę uzyskują jednoznaczną regułę na&nbsp;okres przejściowy.</li>
             </ul>
           </div>
         </details>
@@ -2513,22 +2390,21 @@ html[data-grad-level="max"] .tally .big{
           <summary><span class="chev">+</span> Co&nbsp;można zarzucić – i&nbsp;co odpowiadamy <span class="scount">1 zastrzeżenie</span></summary>
           <div class="dsec-body">
             <div class="steel">
-              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>To uwaga czysto techniczna – nie buduje kapitału politycznego, niepotrzebnie wydłuża pakiet propozycji.</p></div>
-              <div class="riposta"><span class="stag">Odpowiedź – częściowo trafne</span><p>Dlatego Propozycja 13 ma najniższy priorytet w&nbsp;turze 2 i&nbsp;nie wchodzi do&nbsp;pierwszej tury. Ale luka jest realna – bez zdania drugiego organy stosujące uchwałę mają niejasność na&nbsp;okres około 16 miesięcy (do&nbsp;1 października 2027 r.). Koszt poprawki jest znikomy (jedno zdanie), a&nbsp;korzyść realna – usunięcie luki interpretacyjnej.</p></div>
+              <div class="zarzut"><span class="stag">Zastrzeżenie</span><p>To uwaga o&nbsp;charakterze czysto technicznym, która wydłuża pakiet propozycji o&nbsp;pozycję porządkową.</p></div>
+              <div class="riposta"><span class="stag">Odpowiedź</span><p>Propozycja 13 ma najniższy priorytet w&nbsp;całym pakiecie. Ale luka jest realna – bez zdania drugiego organy stosujące uchwałę mają niejasność na&nbsp;okres około 16 miesięcy (do&nbsp;1 października 2027 r.). Koszt poprawki jest znikomy (jedno zdanie), a&nbsp;korzyść realna – usunięcie luki interpretacyjnej.</p></div>
             </div>
           </div>
         </details>
         <details class="dsec">
           <summary><span class="chev">+</span> Dlaczego to dobry kompromis <span class="scount">kompromis</span></summary>
           <div class="dsec-body">
-            <p>Jedno zdanie dodane do&nbsp;§ 8 ust. 3; zdanie pierwsze (termin 2027/2028) bez zmian. Ryzyko organizacyjne niskiej rangi, klasa redakcyjna. Tura 2, niski priorytet – porządkowe domknięcie, nie pozycja czołowa.</p>
+            <p>Jedno zdanie dodane do&nbsp;§ 8 ust. 3; zdanie pierwsze (termin 2027/2028) bez zmian. Ryzyko organizacyjne niskiej rangi, klasa redakcyjna. Niski priorytet – porządkowe domknięcie, nie pozycja czołowa.</p>
           </div>
         </details>
       </div>
     </div>
   </article>
 
-  <!-- ========== S-04 ========== -->
   <article class="unit poza" id="s04">
     <div class="unit-head">
       <div class="unit-tags">
@@ -2559,7 +2435,6 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-17 ========== -->
   <article class="unit poza" id="s17">
     <div class="unit-head">
       <div class="unit-tags">
@@ -2580,7 +2455,7 @@ html[data-grad-level="max"] .tally .big{
         </div>
         <div class="riposta">
           <span class="stag">W5 – częściowy opt-out z&nbsp;oceny (prawo, by pracę oceniał człowiek)</span>
-          <p><strong>Uwzględniony w&nbsp;Propozycji 11 i&nbsp;Propozycji 3, nie osobna jednostka.</strong> Test tego postulatu jest w&nbsp;znacznej części spełniany pośrednio: <a href="#s08">Propozycja 11</a> (mierzalny próg nie-wyłączności weryfikacji) oraz <a href="#s11">Propozycja 3</a> (detektor nie jako samodzielna podstawa) razem zapewniają, że&nbsp;ocena nie opiera się wyłącznie na&nbsp;zautomatyzowanym przetwarzaniu. Osobna klauzula W5 powstaje wyłącznie wtedy, gdyby reakcja zespołu URK wykazała, że&nbsp;Propozycja 11 i&nbsp;Propozycja 3 nie domykają tego ryzyka – rezerwa tury 2.</p>
+          <p><strong>Uwzględniony w&nbsp;Propozycji 11 i&nbsp;Propozycji 3, nie osobna jednostka.</strong> Test tego postulatu jest w&nbsp;znacznej części spełniany pośrednio: <a href="#s08">Propozycja 11</a> (mierzalny próg nie-wyłączności weryfikacji) oraz <a href="#s11">Propozycja 3</a> (detektor nie jako samodzielna podstawa) razem zapewniają, że&nbsp;ocena nie opiera się wyłącznie na&nbsp;zautomatyzowanym przetwarzaniu. Osobna klauzula W5 powstaje wyłącznie wtedy, gdyby reakcja zespołu URK wykazała, że&nbsp;Propozycja 11 i&nbsp;Propozycja 3 nie domykają tego ryzyka – pozycja rezerwowa.</p>
         </div>
       </div>
       <div class="verdict nd">
@@ -2590,7 +2465,6 @@ html[data-grad-level="max"] .tally .big{
     </div>
   </article>
 
-  <!-- ========== S-02 / S-06 ========== -->
   <article class="unit poza" id="s0206">
     <div class="unit-head">
       <div class="unit-tags">
@@ -2618,7 +2492,7 @@ html[data-grad-level="max"] .tally .big{
   </article>
 </section>
 
-<!-- ====================== 05 WZORCE ====================== -->
+<!-- ====================== 04 WZORCE ====================== -->
 <section class="section" id="wzorce">
   <div class="section-head">
     <span class="section-num">04</span>
@@ -2711,7 +2585,7 @@ html[data-grad-level="max"] .tally .big{
   </div>
   <div class="prose">
     <p class="lede">Propozycje trafiają do&nbsp;zespołu URK przez <strong>formularz konsultacyjny</strong> &ndash; oficjalny kanał wskazany przez przewodniczącego zespołu opracowującego projekt.</p>
-    <p class="wide"><strong>Pięć propozycji rdzeniowych</strong> (Propozycja 1-5) stanowi priorytet zgłoszenia; pozostałe osiem propozycji oraz trzy wątki analityczne są przedstawione w&nbsp;tej samej platformie i&nbsp;mogą być wniesione równolegle lub sekwencyjnie, zależnie od&nbsp;reakcji zespołu URK.</p>
+    <p class="wide"><strong>Pięć propozycji rdzeniowych</strong> (Propozycja 1-5) stanowi priorytet zgłoszenia; pozostałe osiem propozycji oraz trzy wątki analityczne są przedstawione w&nbsp;tej samej platformie.</p>
   </div>
 </section>
 
@@ -2789,8 +2663,8 @@ html[data-grad-level="max"] .tally .big{
       <li><strong>OpenAI</strong> &ndash; addendum do&nbsp;wpisu o&nbsp;klasyfikatorze AI, 20.07.2023 (wycofanie własnego narzędzia detekcji z&nbsp;powodu niskiej dokładności). <span class="src">openai.com/index/new-ai-classifier-for-indicating-ai-written-text/</span></li>
       <li><strong>Anthropic</strong> &ndash; „Emotion Concepts and their Function in a&nbsp;Large Language Model", Transformer Circuits, 2 kwietnia 2026&nbsp;r. (funkcjonalne wektory emocji wpływające przyczynowo na&nbsp;zachowanie modelu). <span class="src">transformer-circuits.pub/2026/emotions/index.html &middot; powołane w&nbsp;sekcji 02 (założenia teoretyczne)</span></li>
       <li><strong>Karpathy &ndash; protokół LLM&nbsp;council</strong> &ndash; podstawa metodologiczna autorskiej operacjonalizacji wieloagentowej recenzji propozycji (anonimowa wzajemna ocena, ograniczenie efektu potakiwania). <span class="src">github.com/karpathy/llm-council &middot; powołane w&nbsp;Deklaracji AI</span></li>
-      <li><strong>Li i&nbsp;in. 2023</strong> &ndash; badania nad reprezentacjami wewnętrznymi modeli językowych typu Othello-GPT (kontekst teoretyczny argumentów o&nbsp;naturze modeli). <span class="src">powołane w&nbsp;sekcji 02 (założenia teoretyczne)</span></li>
-      <li><strong>Karl Friston</strong> &ndash; zasada minimalizacji wolnej energii / paradygmat przetwarzania predykcyjnego (kontekst teoretyczny argumentu o&nbsp;wzmacnianiu przekonań, Propozycja 12). <span class="src">powołane w&nbsp;sekcji 02 (założenia teoretyczne)</span></li>
+      <li><strong>Li i&nbsp;in. 2023</strong> &ndash; badania nad reprezentacjami wewnętrznymi modeli językowych (kontekst teoretyczny argumentu o&nbsp;ograniczeniach detekcji). <span class="src">powołane w&nbsp;sekcji 02</span></li>
+      <li><strong>Karl Friston</strong> &ndash; paradygmat przetwarzania predykcyjnego, przywołany jako tło argumentu o&nbsp;wzmacnianiu przekonań (Propozycja 12). <span class="src">powołane w&nbsp;sekcji 02</span></li>
     </ul>
 
     <div class="callout" style="margin-top:2em;">
@@ -2811,7 +2685,7 @@ html[data-grad-level="max"] .tally .big{
       </div>
       <div>
         <h4>Metoda</h4>
-        <p>Autorska metoda badawcza &middot; materiał dowodowy zweryfikowany ze&nbsp;źródłami pierwotnymi &middot; wielo-soczewkowa recenzja propozycji (anonimowa wzajemna ocena) &middot; osiem autorskich ram redakcyjnych &middot; dwustopniowy test selekcji i&nbsp;wystarczalności.</p>
+        <p>Autorska metoda badawcza &middot; materiał dowodowy zweryfikowany ze&nbsp;źródłami pierwotnymi &middot; niezależna recenzja każdej propozycji &middot; spójny zestaw kryteriów redakcyjnych &middot; dwustopniowa selekcja propozycji pod&nbsp;kątem wystarczalności.</p>
       </div>
       <div>
         <h4>Higiena źródeł</h4>
@@ -2819,7 +2693,7 @@ html[data-grad-level="max"] .tally .big{
       </div>
     </div>
     <div class="foot-rule">
-      <span>Wersja robocza 1.0 &middot; 22 maja 2026 &middot; nie jest oficjalnym stanowiskiem żadnego organu Uniwersytetu Warszawskiego.</span>
+      <span>Wersja robocza 1.0 &middot; 22 maja 2026 (v1.1 &middot; 16 czerwca 2026) &middot; nie jest oficjalnym stanowiskiem żadnego organu Uniwersytetu Warszawskiego.</span>
       <span class="foot-mark">INSAI &middot; w&nbsp;rejestracji</span>
     </div>
   </div>
@@ -2904,7 +2778,7 @@ html[data-grad-level="max"] .tally .big{
 
 <script>
 /* ============================================================
-   TWEAKS PANEL — INSAI graficzny lifting
+   TWEAKS PANEL - INSAI graficzny lifting
    ============================================================ */
 (function(){
   var DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -2985,7 +2859,7 @@ html[data-grad-level="max"] .tally .big{
     try { window.parent.postMessage({type:'__edit_mode_dismissed'}, '*'); } catch(e) {}
   });
 
-  // host protocol — register listener FIRST, then announce
+  // host protocol - register listener FIRST, then announce
   window.addEventListener('message', function(e){
     if (!e.data || !e.data.type) return;
     if (e.data.type === '__activate_edit_mode') panel.classList.add('on');
